@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head><title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88562228-1"></script>
+    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/@silvermine/videojs-quality-selector/dist/css/quality-selector.css" rel="stylesheet">
+    <link href="/fonts.css" rel="stylesheet"/>
+    <link href="/main.css" rel="stylesheet">
+
+</head>
+<body style="">
+<style>
+    #langSelector{
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        cursor: pointer;
+        color: white;
+        padding: 4px;
+        border: 1px solid white;
+        border-radius: 8px;
+        opacity: .5;
+        transition: opacity .5s ease;
+    }
+    #langSelector:hover{
+        opacity: 1;
+    }
+
+</style>
+<div class="videoWrapper" style="">
+    <iframe width="560" height="315" src="https://player.vimeo.com/video/488186268" frameborder="0" allow="autoplay;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div id="langSelector" onclick="document.location.href='/playerplen.html'">EN</div>
+</div>
+<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+<script src="https://unpkg.com/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
+<script src="/javascripts/videojs-dvr.js"></script>
+<link href="https://unpkg.com/@silvermine/videojs-quality-selector/dist/css/quality-selector.css" rel="stylesheet">
+<script>window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+
+gtag('config', 'UA-88562228-1');
+
+
+</script>
+<script src="/build.js"></script>
+</body>
+</html>

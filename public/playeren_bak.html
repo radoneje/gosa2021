@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head><title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88562228-1"></script>
+    <script></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet"/>
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+            integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
+            crossorigin="anonymous"></script>
+    <link href="/fonts.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/@silvermine/videojs-quality-selector/dist/css/quality-selector.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body style="opacity: 0;">
+
+<div class="videoWrapper">
+    <video class="video video-js" id="my-video" style="opacity:0;" controls playsinline preload="auto" width="640"
+           height="264" poster="/images/sberbg.png" data-setup="{}"><p class="vjs-no-js">To view this video please
+        enable JavaScript, and consider upgrading to a web browser that<a
+                href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p></video>
+</div>
+<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+<script src="https://unpkg.com/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
+<script src="/javascripts/videojs-dvr.js"></script>
+<script>window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+
+gtag('config', 'UA-88562228-1');
+var source = [[
+    {src: "https://front.sber.link/hls/app01/e_st01_1080p/index.m3u8", type: "application/x-mpegURL", label: "720P"},
+    {
+        src: "https://front.sber.link/hls/app01/e_st01_720p/index.m3u8",
+        type: "application/x-mpegURL",
+        label: "480P",
+        selected: "true"
+    },
+    {src: "https://front.sber.link/hls/app01/e_st01_360p/index.m3u8", type: "application/x-mpegURL", label: "320p"}
+], [
+    {
+        src: "https://ngenix.sber.link/hls/app01/e_st01_1080p/index.m3u8",
+        type: "application/x-mpegURL",
+        label: "720P"
+    },
+    {
+        src: "https://ngenix.sber.link/hls/app01/e_st01_720p/index.m3u8",
+        type: "application/x-mpegURL",
+        label: "720P",
+        selected: "true"
+    },
+    {
+        src: "https://ngenix.sber.link/hls/app01/e_st01_360p/index.m3u8",
+        type: "application/x-mpegURL",
+        label: "720p"
+    }
+]]
+
+var player = videojs('my-video');
+player.src(source[0])
+player.srcIndex = 0;
+player.controlBar.addChild('QualitySelector');
+document.getElementById("my-video").style.opacity = 1;
+document.querySelector('video').style.opacity = 1;
+player.dvr();
+setTimeout(function () {
+    updateSource(player);
+}, 2000)
+
+function updateSource(player) {
+    try {
+        axios.get("/api/currSourceEng").then(function (ok, reg) {
+            var res = ok.data;
+            if (res != player.srcIndex && res <= source.length) {
+                player.src(source[res])
+                player.srcIndex = res;
+                player.play();
+            }
+        })
+
+    } catch (e) {
+        console.warn("Error!" + e)
+    }
+    setTimeout(function () {
+        updateSource(player)
+    }, 10000);
+}</script>
+<script src="/build.js"></script>
+</body>
+</html>

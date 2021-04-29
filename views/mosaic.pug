@@ -1,0 +1,41 @@
+extends layout
+block head
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+  style.
+    .videoBox{width: 1920px; height: 1080px;background-image: url(/images/bg.png);display: flex;flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;}
+    .videoWrapper2{
+      width: 100%;
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+    }
+    .videoItem{
+      flex-grow: 1;
+      width: 33%;
+    }
+    .video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    .videoCap{
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 4px;
+      background: rgba(0, 0, 0, .5);
+      color: white;
+      font-size: 24px;
+    }
+
+block content
+  #app
+    .videoBox
+      .videoItem(v-for="item in sources")
+        .videoWrapper2
+          video(:id="item.id" muted controls width="640" height='360')
+          .videoCap {{item.title}}
+  script(src='/javascripts/mosaicScript.js')

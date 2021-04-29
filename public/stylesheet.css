@@ -1,0 +1,90 @@
+@font-face {
+    font-family: 'SB Sans Display';
+    src: url('SBSansDisplay-Regular.woff2') format('woff2'),
+    url('SBSansDisplay-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SB Sans Display';
+    src: url('SBSansDisplay-Thin.woff2') format('woff2'),
+    url('SBSansDisplay-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SB Sans Display';
+    src: url('SBSansDisplay-Semibold.woff2') format('woff2'),
+    url('SBSansDisplay-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SB Sans Display';
+    src: url('SBSansDisplay-Bold.woff2') format('woff2'),
+    url('SBSansDisplay-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SB Sans Display';
+    src: url('SBSansDisplay-Light.woff2') format('woff2'),
+    url('SBSansDisplay-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SB Sans Interface';
+    src: url('SBSansInterface-Bold.woff2') format('woff2'),
+    url('SBSansInterface-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SB Sans Interface';
+    src: url('SBSansInterface-Light.woff2') format('woff2'),
+    url('SBSansInterface-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SB Sans Interface Caps';
+    src: url('SBSansInterface-Caps.woff2') format('woff2'),
+    url('SBSansInterface-Caps.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SB Sans Interface';
+    src: url('SBSansInterface-Semibold.woff2') format('woff2'),
+    url('SBSansInterface-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SB Sans Interface';
+    src: url('SBSansInterface-Regular.woff2') format('woff2'),
+    url('SBSansInterface-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

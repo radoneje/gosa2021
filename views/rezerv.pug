@@ -1,0 +1,107 @@
+extends layout
+
+block content
+  style.
+    .sel {
+      background: yellow
+    }
+  div(style="padding:40px")
+    h1 русский
+    div
+        input.rus(type="button" id="rus0" value="основной" style='display:inline-block; padding:5px; margin:10px' onclick="changerus(0)")
+        input.rus(type="button" id="rus1" value="резерв" style='display:inline-block; padding:5px; margin:10px; margin-left:60px' onclick="changerus(1)")
+        input.rus(type="button" id="rus2" value="ngenix" style='display:inline-block; padding:5px; margin:10px; margin-left:60px' onclick="changerus(2)")
+        //span Новые:&nbsp;
+        //select(id="newRus" onchange="changeNewRus()")
+          option(id="newRus0" value="0" selected="true") основной
+          option(id="newRus1" value="1" ) резерв
+          option(id="newRus2" value="2" ) ngenix
+    h1 english
+    div
+        input.eng(type="button" id="eng0" value="основной" style='display:inline-block; padding:5px; margin:10px' onclick="changeeng(0)")
+        input.eng(type="button" id="eng1" value="резерв" style='display:inline-block; padding:5px; margin:10px; margin-left:60px' onclick="changeeng(1)")
+        input.eng(type="button" id="eng2" value="ngenix" style='display:inline-block; padding:5px; margin:10px; margin-left:60px' onclick="changeeng(2)")
+        //span Новые:&nbsp;
+        //select(id="newEng" onchange="changeNewEng()")
+          option(id="newEng0" value="0" selected="true") основной
+          option(id="newEng1" value="1" ) резерв
+          option(id="newEng2" value="2" ) ngenix
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
+  script.
+
+    async function changeNewRus(){
+      var res = await
+      axios.get("/api/setNewRus/" + document.getElementById('newRus').value);
+    }
+    async function changeNewEng() {
+      var res = await
+      axios.get("/api/setNewEng/" + document.getElementById('newEng').value);
+    }
+    const newRus=async ()=>{
+      var res=await axios.get("/api/currNewRus");
+      var id=res.data;
+
+      document.getElementById('newRus').value=id;
+      setTimeout(newRus, 5000);
+    }
+    newRus();
+    const newEng = async () => {
+
+      var res = await axios.get("/api/currNewEng");
+      var id = res.data;
+
+      document.getElementById('newEng').value = id;
+      setTimeout(newEng, 5000);
+    }
+    newEng();
+    const sRus= async() =>{
+      console.log("sRus");
+      var res=await axios.get("/api/currSource");
+      var id=res.data;
+      var rus=document.querySelectorAll(".rus");
+      rus.forEach(r=>{
+        r.classList.remove("sel");
+        if(r.id=="rus"+id)
+          r.classList.add("sel");
+      })
+      setTimeout(sRus, 5000);
+    }
+    const sEng = async () => {
+      console.log("sEng");
+      var res = await
+      axios.get("/api/currSourceEng");
+      var id = res.data;
+      var rus = document.querySelectorAll(".eng");
+      rus.forEach(r=>{
+        r.classList.remove("sel");
+      if (r.id == "eng" + id)
+        r.classList.add("sel");
+    })
+      setTimeout(sRus, 5000);
+    }
+    sRus();
+    sEng();
+    const changerus=async(index)=>{
+      var res = await axios.get("/api/setSource/"+index);
+      var id=res.data;
+      var rus=document.querySelectorAll(".rus");
+      rus.forEach(r=>{
+        r.classList.remove("sel");
+      if (r.id == "rus" + id)
+        r.classList.add("sel");
+    })
+    }
+    const changeeng = async (index) => {
+      var res = await
+      axios.get("/api/setSourceEng/" + index);
+      var id = res.data;
+      var rus = document.querySelectorAll(".eng");
+      rus.forEach(r=>{
+        r.classList.remove("sel");
+      if (r.id == "eng" + id)
+        r.classList.add("sel");
+    })
+    }
+

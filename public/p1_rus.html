@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head><title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/fonts.css" rel="stylesheet"/>
+    <link href="/main.css" rel="stylesheet">
+    <style>
+        body{
+            background: transparent;
+
+        }
+        .Wr{
+            position: relative;
+            width: min-content;
+        }
+        .emos{
+            position: absolute;
+            bottom: 38px;
+            box-sizing: border-box;
+            width: 90px;
+            background: transparent;
+            padding: 4px;
+            right: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease;
+
+        }
+
+        .emoItem {
+            width: 44px;
+            height: 44px;
+            transition: opacity 1s ease;
+            opacity: .5;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .emoItem:hover{
+            opacity: 1;
+        }
+        .emoItem img{
+            width: 44px;
+        }
+        .emoItem:hover{
+            background-color: #00aeff;
+        }
+    </style>
+</head>
+<body >
+<div class="Wr" id="app">
+    <iframe v-on:load="init=1" src="https://facecast.net/v/0w01nc?noanimation&nodate&nolabel" width="976" height="549" style="border:none;margin-top:-5px;width: 100vw;height: calc((100vw / 16)*9);" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <div class="emos" v-bind:style="{opacity:init}" style="opacity:0">
+        <div class="emoItem" v-for="item in emos" v-on:click="emoClick(item, $event)" >
+            <img :src="item.url">
+        </div>
+    </div>
+    <div class="scroll" id="emBox">
+        <div id="emWr"></div>
+    </div>
+</div>
+<script>
+    var last=false
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="/emosScript.js"></script>
+</body>
+</html>

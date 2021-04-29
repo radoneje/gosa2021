@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head><title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet"/>
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <link href="/fonts.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/@silvermine/videojs-quality-selector/dist/css/quality-selector.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body style="opacity: 0;">
+<div class="bgFixed">
+    <div class="bgContainer">
+        <div id="bg1"></div>
+        <div id="bg2"></div>
+    </div>
+</div>
+<div>
+    <div class="l">
+        <div class="videoWrapper">
+            <video class="video video-js" id="my-video" style="opacity:1" controls playsinline preload="auto"
+                   width="640" height="264" poster="/images/poster2.png" data-setup="{}">
+                <source src="https://rtmp.may24.pro/hls/st01_720p_r/index.m3u8" type="application/x-mpegURL"
+                        label="720P">
+                <source src="https://rtmp.may24.pro/hls/st01_720p_r/index.m3u8" type="application/x-mpegURL"
+                        label="480P" selected="true">
+                <source src="https://rtmp.may24.pro/hls/st01_720p_r/index.m3u8" type="application/x-mpegURL"
+                        label="360P">
+                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web
+                    browser that<a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                        video</a></p></video>
+            <div class="scroll" id="emBox">
+                <div id="emWr"></div>
+            </div>
+            <div id="bonusBox"
+                 onclick="if(document.getElementById(&quot;bonusBox&quot;).classList.contains(&quot;collapsed&quot;)) document.getElementById(&quot;bonusBox&quot;).classList.remove(&quot;collapsed&quot;)">
+                <div class="bonusItem" id="bonus1">
+                    <div class="bonusItemTitle">Вы выиграли 100 рублей</div>
+                    <div class="divaider"></div>
+                    <div class="bonusItemGet">
+                        <div class="bonusItemGetItem i1">Получить</div>
+                        <div class="bonusItemGetItem i2"
+                             onclick="event.stopPropagation();window.event.cancelBubble = true;document.getElementById(&quot;bonusBox&quot;).classList.add(&quot;collapsed&quot;)">
+                            Свернуть
+                        </div>
+                    </div>
+                </div>
+                <div class="bonusItem" id="bonus2">
+                    <div class="bonusItemTitle">Вы выиграли 100 рублей</div>
+                    <div class="divaider"></div>
+                    <div class="bonusItemGet">
+                        <div class="bonusItemGetItem i1">Получить</div>
+                        <div class="bonusItemGetItem i2"
+                             onclick="event.stopPropagation();window.event.cancelBubble = true;document.getElementById(&quot;bonusBox&quot;).classList.add(&quot;collapsed&quot;)">
+                            Свернуть
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="r" id="app">
+        <div class="rInside">
+            <div class="fbBox" v-on:click="feedbackIsShow=true">
+                <div class="fb btn" role="button">
+                    <div class="fbCap">Обратная связь</div>
+                </div>
+            </div>
+            <div class="chatBox">
+                <div class="chat scroll" id="chat">
+                    <div class="chatItem" v-for="item in chat">
+                        <div class="chatItemText">{{findChatText(item)}}</div>
+                        <div class="chatItemTime">{{formatTime(item.time)}}</div>
+                    </div>
+                </div>
+                <div class="emo" v-bind:class="{expanded:frazeIsExpand}">
+                    <div class="frazeBox">
+                        <div class="frazeHeader" v-on:click="frazeIsExpand=!frazeIsExpand">
+                            <span>Все фразы &nbsp</span><span v-if="!frazeIsExpand"><svg width="18" height="16"
+                                                                                         viewBox="0 0 18 16" fill="none"
+                                                                                         xmlns="http://www.w3.org/2000/svg">
+<path d="M1 14L9 6L17 14" stroke="#333F48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span></div>
+                        <div class="frazeBody" v-show="frazeIsExpand">
+                            <div class="frazeWr scroll">
+                                <div class="frazeItem" v-for="item in frazes" v-on:click="clickChatItem(item)"><span>{{item.text}}</span>
+                                </div>
+                            </div>
+                            <div class="frazeFooter"
+                                 v-on:click="frazeIsExpand=!frazeIsExpand"><span>Свернуть &nbsp<span><svg width="18"
+                                                                                                          height="16"
+                                                                                                          viewBox="0 0 18 16"
+                                                                                                          fill="none"
+                                                                                                          xmlns="http://www.w3.org/2000/svg">
+<path d="M1 6L9 14L17 6" stroke="#333F48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span></span></div>
+                        </div>
+                    </div>
+                    <div class="divaider"></div>
+                    <div class="emoBox">
+                        <div class="emoItem" v-for="item in emos" v-on:click="emoClick(item, $event)"><img
+                                :src="item.url"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="fbForm" v-if="feedbackIsShow">
+                <div class="fbHeader">
+                    <div class="fbTitle">Обратная связь</div>
+                    <div class="fbClose" v-on:click="feedbackIsShow=false">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="7.41421" y1="7" x2="17.3137" y2="16.8995" stroke="#6E6E6E" stroke-width="2"
+                                  stroke-linecap="round"/>
+                            <line x1="1" y1="-1" x2="15" y2="-1"
+                                  transform="matrix(-0.707107 0.707107 0.707107 0.707107 18.3137 7)" stroke="#6E6E6E"
+                                  stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div class="fbBody"><input class="fbName" placeholder="Имя" v-model="fbName"><textarea class="fbName"
+                                                                                                       placeholder="Текст"
+                                                                                                       v-model="fbText"></textarea>
+                    <div class="fb btn" role="button" v-on:click="sendForm"
+                         v-bind:class="{disabled:(fbName.length&lt;3 || fbText.length&lt;3)}">
+                        <div class="fbCap">Отправить</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+<script src="https://unpkg.com/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
+<script src="/javascripts/videojs-dvr.js"></script>
+<script>var player = videojs('my-video');
+player.controlBar.addChild('QualitySelector');
+document.getElementById("my-video").style.opacity = 1;
+document.querySelector('video').style.opacity = 1;
+player.dvr();</script>
+<script src="/build.js"></script>
+</body>
+</html>

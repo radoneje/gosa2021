@@ -1,0 +1,59 @@
+
+
+
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <meta name="description" content="Описание страницы" />
+    <meta name="viewport" content="initial-scale=1, width=device-width, user-scalable=0" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="icon" href="/img/favicon.png">
+
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<img id="img"></img>
+</body>
+<script>
+    startWorker();
+    async function startWorker(){
+       // var myWorker = new Worker("worker.js");
+        var barcodeDetector = new BarcodeDetector({formats: ['qr_code']});
+        var mediaStream = await navigator.mediaDevices.getUserMedia({video:true});
+        const track = mediaStream.getVideoTracks()[0];
+
+        await takePhoto()
+        async function takePhoto() {
+
+            if(track.readyState=="live") {
+                let imageCapture = new ImageCapture(track);
+                var photo = await imageCapture.takePhoto();
+                img.src = URL.createObjectURL(photo);
+                var barcodes = await barcodeDetector.detect(img);
+                barcodes.forEach(barcode => {
+                    if (barcode.format == "qr_code")
+                        console.log(barcode.rawValue);
+                })
+            }
+            setTimeout(async ()=>{await takePhoto();},100)
+
+        }
+
+        /*myWorker.postMessage(["detectPhoto", photo]);
+        myWorker.onmessage = function(e) {
+            var textContent = e.data;
+            console.log('Message received from worker ', textContent);
+        }*/
+    };
+
+
+
+
+</script>
+</html>
