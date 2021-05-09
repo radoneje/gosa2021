@@ -27,6 +27,9 @@ html
                 opacity: 1;
 
             }
+        script.
+            var hall = !{JSON.stringify(hall)}
+            var lang = !{JSON.stringify(lang)}
     body(style="opacity: 0;")
         .videoWrapper
             video.video.video-js#my-video( style="opacity:1" loop controls playsinline preload="auto" width="640" height="264" data-setup="{}")
@@ -34,8 +37,7 @@ html
         script(src="/lib/video.js")
         script(src="/lib/silvermine-videojs-quality-selector.min.js")
         script.
-            var hall=!{JSON.stringify(hall)}
-            var lang = !{JSON.stringify(lang)}
+
             window.dataLayer = window.dataLayer || [];
             function gtag() {
                 dataLayer.push(arguments);
