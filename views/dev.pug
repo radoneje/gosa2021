@@ -33,7 +33,7 @@ html
     body(style="opacity: 0;")
         .videoWrapper
             video.video.video-js#my-video( style="opacity:1" loop controls playsinline preload="auto" width="640" height="264" data-setup="{}")
-            #langSelector( onclick="document.location.href='/dev/"+hall+"/"+lang=="ru"?"en":"ru") !{lang=="ru"?"EN":"RU"}
+            #langSelector( onclick="document.location.href='/dev/"+hall+"/"+(lang=="ru"?"en":"ru")) !{lang=="ru"?"EN":"RU"}
         script(src="/lib/video.js")
         script(src="/lib/silvermine-videojs-quality-selector.min.js")
         script.
