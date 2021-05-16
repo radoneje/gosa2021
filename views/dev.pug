@@ -31,12 +31,48 @@ html
             var hall = !{JSON.stringify(hall)};
             var lang = !{JSON.stringify(lang)};
     body(style="opacity: 0;")
-        .videoWrapper
+        .videoWrapper#videoWrapper
             video.video.video-js#my-video( style="opacity:1" loop controls playsinline preload="auto" width="640" height="264" data-setup="{}")
             #langSelector( onclick="document.location.href='/dev/"+hall+"/"+(lang=="ru"?"en":"ru")+"'") !{lang=="ru"?"EN":"RU"}
         script(src="/lib/video.js")
         script(src="/lib/silvermine-videojs-quality-selector.min.js")
         script.
+            updateSource();
+            function updateSource(state){
+                axios.get("/currplayer/"+hall+"/"+lang)
+                    .then(function (r){
+
+                        if(r.data.state!=state){
+                            var myVideo = document.getElementById("my-video");
+                            if (myVideo) {
+                                var oldPlayer = document.getElementById('my-video');
+                                videojs(oldPlayer).dispose();
+                                console.log("destroy player")
+                            }
+                            var html=""
+                            switch (r.data.state)
+                            {
+                                case "0":html=r.data.codes.z;break;
+                                case "1":html=r.data.codes.o;break;
+                                case "2":html=r.data.codes.b;break;
+                            }
+                            if(html.length>0) {
+                                document.getElementById("videoWrapper").innerHTML = html;
+                                var myVideo = document.getElementById("my-video");
+                                if(myVideo){
+                                    setTimeout(initCDNPlayer,100)
+                                   // initCDNPlayer();
+                                }
+                                state=r.data.state;
+                            }
+                        }
+                        setTimeout(function(){updateSource(state)},5*1000)
+                    })
+                    .catch(function (e) {
+                        console.warn(e);
+                        setTimeout(function(){updateSource(state)},5*1000)
+                    })
+            }
 
             window.dataLayer = window.dataLayer || [];
             function gtag() {
@@ -45,23 +81,29 @@ html
             gtag('js', new Date());
             gtag('config', 'UA-88562228-1');
 
-
-            var src = [
-                {
-                    src: "https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/"+(hall=="ms"?"ms":"dev")+"_"+lang.toLowerCase()+"/playlist.m3u8",
-                    label: "720P",
-                    selected: true
+            function initCDNPlayer() {
+                console.log("initCDNPlayer")
+                var elem=document.getElementById("my-video");
+                var stream=elem.getAttribute("stream");
+                console.log("stream", stream)
+                var src = [
+                    {
+                        src: "https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/" + (hall == "ms" ? "ms" : "dev") + "_" + lang.toLowerCase() + "/playlist.m3u8",
+                        label: "720P",
+                        selected: true
+                    }
+                ];
+                var match = hall.match(/hall(\d\d)/);
+                if (match && parseInt(match[1]) > 10) {
+                    src[0].src = "https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/hall" + match[1] + "_" + lang.toLowerCase() + "/playlist.m3u8"
                 }
-            ];
-            var match=hall.match(/hall(\d\d)/);
-            if(match && parseInt(match[1])>10)
-            {
-                src[0].src="https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/hall" +match[1]+"_"+lang.toLowerCase()+"/playlist.m3u8"
+
+                var player = videojs('my-video');
+
+                player.src(src);
+                player.poster("/poster/" + hall + "_" + lang.toLowerCase() + ".png");
+                player.controlBar.addChild('QualitySelector');
+                player.play();
             }
-                console.log(src)
-            var player = videojs('my-video');
-            player.src(src);
-            player.poster("/poster/"+hall+"_"+lang.toLowerCase()+".png");
-            player.controlBar.addChild('QualitySelector');
 
             document.body.style.opacity = 1;

@@ -143,5 +143,33 @@ router.get('/titlesjson', function(req, res, next) {
 
 
 
+router.get('/halls', function(req, res, next) {
+  fs.readFile("./halls.json", async(err, data)=>{
+    var s=JSON.parse(data)
+    res.json(s);
+  })
+
+})
+router.post('/hall', function(req, res, next) {
+  fs.readFile("./halls.json", async(err, data)=>{
+    var s=JSON.parse(data);
+    var r=[];
+    s.forEach(h=>{
+      if(h.id==req.body.hall.id && h.lang==req.body.hall.lang){
+        h=req.body.hall;
+        console.log(h)
+      }
+      r.push(h)
+    })
+
+    fs.writeFile("./halls.json", JSON.stringify(r), async(err, data)=>{
+      res.json(r);
+    })
+
+  })
+
+})
+
+
 
 module.exports = router;

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const fs = require('fs');
 
 /* GET home page. */
 
@@ -14,6 +15,8 @@ router.get('/dev/:hall/:lang?', function(req, res, next) {
   if(!(req.params.lang=="ru"|| req.params.lang=="en"))
     req.params.lang="ru";
 
+  if(req.params.hall=="ms")
+    return res.redirect("/dev/hall00/"+req.params.lang);
   res.render('dev', {hall:req.params.hall, lang:req.params.lang} );
 })
 
@@ -48,6 +51,13 @@ router.get('/title', function(req, res, next) {
   res.render('title');
 })
 
+router.get('/admin', function(req, res, next) {
+  console.log("check login", req.session.user)
+  if(!req.session.user)
+    return res.redirect("/login")
+  res.render('admin');
+})
+
 router.get('/login', function(req, res, next) {
   req.session.user=null;
   res.render('login');
@@ -59,7 +69,7 @@ router.post('/login', function(req, res, next) {
   {
     console.log("login ok")
     req.session.user='true';
-    return res.redirect("/title")
+    return res.redirect("/admin")
   }
   else
     res.render('login');
@@ -83,6 +93,24 @@ router.get('/', function(req, res, next) {
   res.redirect("/"+req.params.lang)
  // res.render('index', { title: 'Express', src:"https://hls.sber.link/fabrikanews/gosarus/playlist.m3u8", lang:req.params.lang.toUpperCase() });
 })
+router.get('/currplayer/:hall/:lang', function(req, res, next) {
+
+  fs.readFile("./halls.json", async(err, data)=>{
+    if(err)
+      return res.sendStatus(403);
+    var s=JSON.parse(data)
+    s=s.filter(item=>{
+      console.log(item.id==req.params.hall ,  item.lang==req.params.lang, req.params.hall, req.params.lang, item.lang)
+      return item.id==req.params.hall && item.lang==req.params.lang
+    })
+    if(s.length>0)
+      return res.json(s[0]);
+    else
+      return res.sendStatus(404);
+  })
+
+});
+
 
 
 
