@@ -54,8 +54,11 @@ html
                 }
             ];
             var match=hall.match(/hall(\d\d)/);
-            if(match)
-                console.log(match)
+            if(match && parseInt(match[1])>10)
+            {
+                src[0].src="https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/hall" +match[1]+"_"+lang.toLowerCase()+"/playlist.m3u8"
+            }
+                console.log(src)
             var player = videojs('my-video');
             player.src(src);
             player.poster("/poster/"+hall+"_"+lang.toLowerCase()+".png");
