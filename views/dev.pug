@@ -53,6 +53,9 @@ html
                     selected: true
                 }
             ];
+            var match=hall.match(/hall(\d\d)/);
+            if(match)
+                console.log(match)
             var player = videojs('my-video');
             player.src(src);
             player.poster("/poster/"+hall+"_"+lang.toLowerCase()+".png");
