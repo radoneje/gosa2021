@@ -2,13 +2,19 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+const moment = require('moment')
 var logger = require('morgan');
 const config=require('./config');
+const fs = require('fs');
+
+
 var chat=[];
 var emos=[];
 for (var i=0; i<21; i++){
   emos.push({id:i, count:0});
 }
+var count={};
+var stat={};
 var source={id:0, idEng:0, newRus:0, newEng:0};
 var session = require('express-session', {maxAge:60*60*1000})
 var titles={};
@@ -33,10 +39,10 @@ app.use(session({
   saveUninitialized: true
 }));
 
-//app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
 
-app.use( (req, res, next)=>{ req.source=source; req.emos=emos;req.chat=chat;req.config=config; next()});
+
+app.use( (req, res, next)=>{ req.count=count; req.stat=stat; req.source=source; req.emos=emos;req.chat=chat;req.config=config; next()});
 app.get('/*',function(req,res,next){
   res.set('Cache-Control', 'public, max-age=20, s-maxage=20');
   next(); // http://expressjs.com/guide.html#passing-route control
@@ -64,5 +70,25 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+setInterval(()=>{
+  var txt="";
+  Object.keys(count).forEach(hall=>{
+    Object.keys(count[hall]).forEach(lang=>{
+      txt+=moment().format("YYYY-MM-DD, HH:mm:ss")+"\t"+ hall+"\t"+lang+"\t"+count[hall][lang] +"\r\n";
+    })
+  })
+  fs.appendFile("public/count.csv",txt, ()=>{;;});
+},5*60*1000)
+
+setInterval(()=>{
+  var txt="";
+  Object.keys(stat).forEach(hall=>{
+    Object.keys(stat[hall]).forEach(lang=>{
+      txt+=moment().format("YYYY-MM-DD, HH:mm:ss")+"\t"+ hall+"\t"+lang+"\t"+stat[hall][lang] +"\r\n";
+    })
+  })
+  fs.appendFile("public/stat.csv",txt, ()=>{;;});
+},5*60*1000)
 
 module.exports = app;
