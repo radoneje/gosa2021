@@ -100,7 +100,6 @@ router.get('/currplayer/:hall/:lang', function(req, res, next) {
       return res.sendStatus(403);
     var s=JSON.parse(data)
     s=s.filter(item=>{
-      console.log(item.id==req.params.hall ,  item.lang==req.params.lang, req.params.hall, req.params.lang, item.lang)
       return item.id==req.params.hall && item.lang==req.params.lang
     })
     if(s.length>0)
