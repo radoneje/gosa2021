@@ -124,6 +124,6 @@ html
             function stat() {
                 console.log("aliveUser")
                 axios.post("/api/aliveUser",{hall:hall,lang:lang})
-                    .then(function (ret) {setTimeout(stat,1*60*1000) })
-                    .catch(function (e) {setTimeout(stat,1*60*1000)})
+                    .then(function (ret) {setTimeout(stat,30*1000) })
+                    .catch(function (e) {setTimeout(stat, 30*1000)})
             }
