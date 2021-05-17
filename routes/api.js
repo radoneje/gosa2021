@@ -171,5 +171,52 @@ router.post('/hall', function(req, res, next) {
 })
 
 
+router.post('/newUser', function(req, res, next) {
+  var id=uuidv4();
+  if(!req.count[req.body.hall])
+    req.count[req.body.hall]={}
+  if(!req.count[req.body.hall][req.body.lang])
+    req.count[req.body.hall][req.body.lang]=0;
+  req.count[req.body.hall][req.body.lang]++;
+  return res.json({id,count:req.count});
+});
+
+router.get('/users', function(req, res, next) {
+  var txt="";
+  Object.keys(req.count).forEach(hall=>{
+    Object.keys(req.count[hall]).forEach(lang=>{
+      txt+=hall+"\t"+lang+"\t"+req.count[hall][lang] +"<br/>";
+    })
+  })
+  return res.send(txt);
+});
+router.get('/stat', function(req, res, next) {
+  var txt="";
+  Object.keys(req.stat).forEach(hall=>{
+    Object.keys(req.stat[hall]).forEach(lang=>{
+      txt+=hall+"\t"+lang+"\t"+req.stat[hall][lang] +"<br/>";
+    })
+  })
+  return res.send(txt);
+});
+
+router.post('/aliveUser', function(req, res, next) {
+  var txt="";
+  if(!req.stat[req.body.hall])
+    req.stat[req.body.hall]={};
+  if(!req.stat[req.body.hall][req.body.lang])
+    req.stat[req.body.hall][req.body.lang]=0;
+  req.stat[req.body.hall][req.body.lang]++;
+
+  setTimeout(()=>{
+    req.stat[req.body.hall][req.body.lang]--;
+    if(req.stat[req.body.hall][req.body.lang]<0)
+      req.stat[req.body.hall][req.body.lang]=0;
+  },1*60*1000);
+  return res.send("ok");
+});
+
+
+
 
 module.exports = router;
