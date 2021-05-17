@@ -61,7 +61,6 @@ html
                                 var myVideo = document.getElementById("my-video");
                                 if(myVideo){
                                     setTimeout(initCDNPlayer,100)
-                                   // initCDNPlayer();
                                 }
                                 state=r.data.state;
                             }
@@ -88,15 +87,15 @@ html
                 console.log("stream", stream)
                 var src = [
                     {
-                        src: "https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/" + (hall == "ms" ? "ms" : "dev") + "_" + lang.toLowerCase() + "/playlist.m3u8",
+                        src: "https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/"+stream+"/playlist.m3u8",//"https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/" + (hall == "ms" ? "ms" : "dev") + "_" + lang.toLowerCase() + "/playlist.m3u8",
                         label: "720P",
                         selected: true
                     }
                 ];
-                var match = hall.match(/hall(\d\d)/);
+               /* var match = hall.match(/hall(\d\d)/);
                 if (match && parseInt(match[1]) > 10) {
                     src[0].src = "https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/hall" + match[1] + "_" + lang.toLowerCase() + "/playlist.m3u8"
-                }
+                }*/
 
                 var player = videojs('my-video');
 
@@ -107,3 +106,24 @@ html
             }
 
             document.body.style.opacity = 1;
+
+            startStat();
+            function startStat(){
+                var uuid=localStorage.getItem("uuid"+hall+lang);
+                if(!uuid || true){
+                     axios.post("/api/newUser",{hall:hall,lang:lang}).then(function (ret) {
+                         localStorage.setItem("uuid"+hall+lang, ret.data)
+                         stat();
+                     }).catch(function (e) {
+                         stat();
+                     })
+
+                }
+                else stat();
+            }
+            function stat() {
+                console.log("aliveUser")
+                axios.post("/api/aliveUser",{hall:hall,lang:lang})
+                    .then(function (ret) {setTimeout(stat,1*60*1000) })
+                    .catch(function (e) {setTimeout(stat,1*60*1000)})
+            }
