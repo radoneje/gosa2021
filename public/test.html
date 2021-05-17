@@ -28,8 +28,11 @@
     </div>
 </div>
 <div style="display: flex;margin:40px">
-
+<div>
     <h4>предпросмотр</h4>
+    <div >
+        <a id="aLink" target="_blank"> Ссылка в новом окне</a>
+    </div>
     <select id="sel" onchange="change()">
         <option selected>Выбор зала</option>
         <option  value="/dev/hall00/ru">зал 00 G русский</option>
@@ -45,9 +48,11 @@
         <iframe id="iframePlayer" width="640" height="360" frameborder="0"></iframe>
     </div>
 </div>
+</div>
 <script>
     function change() {
         iframePlayer.src=sel.value;
+        aLink.href=sel.value
     }
 </script>
 
