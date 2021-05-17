@@ -8,52 +8,48 @@
     <title>test</title>
     <meta name="description" content="Описание страницы" />
     <meta name="viewport" content="initial-scale=1, width=device-width, user-scalable=0" />
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <link rel="icon" href="/img/favicon.png">
 
 
     <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+
     <![endif]-->
 </head>
 <body>
-<img id="img"></img>
-</body>
+<div style="display: flex;margin:40px">
+    <div>
+        <h4>сейчас смотрят</h4>
+        <iframe width="320" height="320" src="/api/stat" frameborder="0"></iframe>
+    </div>
+    <div>
+        <h4>всего зашло</h4>
+        <iframe width="320" height="320" src="/api/users" frameborder="0"></iframe>
+    </div>
+</div>
+<div>
+    <h4>предпросмотр</h4>
+    <select id="sel" onchange="change()">
+        <option selected>Выбор зала</option>
+        <option  value="/dev/hall00/ru">зал 00 G русский</option>
+        <option  value="/dev/hall00/en">hall 00 G english</option>
+        <option  value="/dev/hall01/ru">зал 01 Е русский</option>
+        <option  value="/dev/hall02/ru">hall 02 (9 этаж) русский</option>
+        <option  value="/dev/hall03/ru">hall 03 (10 этаж) русский</option>
+        <option  value="/dev/hall04/ru">hall 04 (14 этаж) русский</option>
+        <option  value="/dev/hall05/ru">hall 05 (15 этаж) русский</option>
+        <option  value="/dev/hall06/ru">hall 06 (16 этаж) русский</option>
+    </select>
+    <div>
+        <iframe id="iframePlayer" width="640" height="360" frameborder="0"></iframe>
+    </div>
+</div>
 <script>
-    startWorker();
-    async function startWorker(){
-       // var myWorker = new Worker("worker.js");
-        var barcodeDetector = new BarcodeDetector({formats: ['qr_code']});
-        var mediaStream = await navigator.mediaDevices.getUserMedia({video:true});
-        const track = mediaStream.getVideoTracks()[0];
-
-        await takePhoto()
-        async function takePhoto() {
-
-            if(track.readyState=="live") {
-                let imageCapture = new ImageCapture(track);
-                var photo = await imageCapture.takePhoto();
-                img.src = URL.createObjectURL(photo);
-                var barcodes = await barcodeDetector.detect(img);
-                barcodes.forEach(barcode => {
-                    if (barcode.format == "qr_code")
-                        console.log(barcode.rawValue);
-                })
-            }
-            setTimeout(async ()=>{await takePhoto();},100)
-
-        }
-
-        /*myWorker.postMessage(["detectPhoto", photo]);
-        myWorker.onmessage = function(e) {
-            var textContent = e.data;
-            console.log('Message received from worker ', textContent);
-        }*/
-    };
-
-
-
-
+    function change() {
+        iframePlayer.src=sel.value;
+    }
 </script>
+
+</body>
+
 </html>
