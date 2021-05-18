@@ -191,7 +191,7 @@ router.get('/users', function(req, res, next) {
       txt+="</tr>"
     })
   })
-  txt="</table></html>";
+  txt+="</table></html>";
   return res.send(txt);
 });
 router.get('/stat', function(req, res, next) {
