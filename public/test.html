@@ -20,13 +20,14 @@
 <div style="display: flex;margin:40px">
     <div>
         <h4>сейчас смотрят</h4>
-        <iframe width="320" height="320" src="/api/stat" frameborder="0"></iframe>
+        <iframe  class="stat" width="320" height="320" src="/api/stat" frameborder="0"></iframe>
     </div>
     <div>
         <h4>всего зашло</h4>
-        <iframe width="320" height="320" src="/api/users" frameborder="0"></iframe>
+        <iframe class="stat"  width="320" height="320" src="/api/users" frameborder="0"></iframe>
     </div>
 </div>
+<input type="button" value=" обновить статистику" onclick="reloadStat()">
 <div style="display: flex;margin:40px">
 <div>
     <h4>предпросмотр</h4>
@@ -61,6 +62,13 @@
     function change() {
         iframePlayer.src=sel.value;
         aLink.href=sel.value
+    }
+    function reloadSatat() {
+        var elems=document.querySelectorAll(".stat").forEach(e=>{
+            e.contentWindow.location.reload(true);
+
+        })
+
     }
 </script>
 
