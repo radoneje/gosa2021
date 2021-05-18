@@ -182,7 +182,7 @@ router.post('/newUser', function(req, res, next) {
 });
 
 router.get('/users', function(req, res, next) {
-  var txt="<html><table>";
+  var txt="<html><table cellpadding='4'>";
 
   Object.keys(req.count).forEach(hall=>{
     Object.keys(req.count[hall]).forEach(lang=>{
@@ -195,10 +195,13 @@ router.get('/users', function(req, res, next) {
   return res.send(txt);
 });
 router.get('/stat', function(req, res, next) {
-  var txt="";
+  var txt="<html><table cellpadding='4'>";
   Object.keys(req.stat).forEach(hall=>{
     Object.keys(req.stat[hall]).forEach(lang=>{
-      txt+=hall+"\t"+ (dictonary[hall])+"\t"+lang+"\t"+req.stat[hall][lang] +"<br/>";
+      txt+="<tr>"
+      txt+="<td>"+hall+"</td><td>"+ (dictonary[hall])+"</td><td>"+lang+"</td><td>"+req.stat[hall][lang] +"</td>";
+      //txt+=hall+"\t"+ (dictonary[hall])+"\t"+lang+"\t"+req.stat[hall][lang] +"<br/>";
+      txt+="</tr>"
     })
   })
   return res.send(txt);
