@@ -204,6 +204,7 @@ router.get('/stat', function(req, res, next) {
       txt+="</tr>"
     })
   })
+  txt+="</table></html>";
   return res.send(txt);
 });
 
