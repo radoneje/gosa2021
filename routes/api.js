@@ -3,7 +3,7 @@ var router = express.Router();
 var faker = require('faker');
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
-
+const  dictonary= require("../dictonary")
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -185,7 +185,7 @@ router.get('/users', function(req, res, next) {
   var txt="";
   Object.keys(req.count).forEach(hall=>{
     Object.keys(req.count[hall]).forEach(lang=>{
-      txt+=hall+"\t"+lang+"\t"+req.count[hall][lang] +"<br/>";
+      txt+=hall+"\t"+ (dictonary[hall]|"")+"\t"+lang+"\t"+req.count[hall][lang] +"<br/>";
     })
   })
   return res.send(txt);
@@ -194,7 +194,7 @@ router.get('/stat', function(req, res, next) {
   var txt="";
   Object.keys(req.stat).forEach(hall=>{
     Object.keys(req.stat[hall]).forEach(lang=>{
-      txt+=hall+"\t"+lang+"\t"+req.stat[hall][lang] +"<br/>";
+      txt+=hall+"\t"+ (dictonary[hall]|"")+"\t"+lang+"\t"+req.stat[hall][lang] +"<br/>";
     })
   })
   return res.send(txt);
