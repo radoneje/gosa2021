@@ -5,5 +5,12 @@
   "hall03": "E10 Platform V",
   "hall04": "E14 SberCloud",
   "hall05": "E15 ML Space",
-  "hall06": "E16 SmartUniverse"
+  "hall06": "E16 SmartUniverse",
+  "hall90": "G02 TEST",
+  "hall91": "E02 TEST",
+  "hall92": "E09 TEST",
+  "hall93": "E10 TEST",
+  "hall94": "E14 TEST",
+  "hall95": "E15 TEST",
+  "hall96": "E16 TEST"
 }
