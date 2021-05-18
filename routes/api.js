@@ -182,14 +182,16 @@ router.post('/newUser', function(req, res, next) {
 });
 
 router.get('/users', function(req, res, next) {
-  var txt="";
+  var txt="<html><table>";
 
   Object.keys(req.count).forEach(hall=>{
     Object.keys(req.count[hall]).forEach(lang=>{
-      console.log("dict",hall, dictonary[hall])
-      txt+=hall+"\t"+ (dictonary[hall])+"\t"+lang+"\t"+req.count[hall][lang] +"<br/>";
+      txt+="<tr>"
+      txt+="<td>"+hall+"</td><td>"+ (dictonary[hall])+"</td><td>"+lang+"</td><td>"+req.count[hall][lang] +"</td>";
+      txt+="</tr>"
     })
   })
+  txt="</table></html>";
   return res.send(txt);
 });
 router.get('/stat', function(req, res, next) {
