@@ -183,6 +183,7 @@ router.post('/newUser', function(req, res, next) {
 
 router.get('/users', function(req, res, next) {
   var txt="";
+  return res.send(dictonary);
   Object.keys(req.count).forEach(hall=>{
     Object.keys(req.count[hall]).forEach(lang=>{
       txt+=hall+"\t"+ (dictonary[hall])+"\t"+lang+"\t"+req.count[hall][lang] +"<br/>";
