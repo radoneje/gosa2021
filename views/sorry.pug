@@ -1,0 +1,145 @@
+doctype html
+html
+    head
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88562228-1"></script>
+        <link href="/lib/video-js.css" rel="stylesheet"/>
+        <script src="/lib/videojs-ie8.min.js"></script>
+        script(src="/lib/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous")
+        <link href="/fonts.css" rel="stylesheet"/>
+        <link href="/lib/quality-selector.css" rel="stylesheet">
+        <link href="/main.css" rel="stylesheet">
+
+        style.
+            #langSelector{
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            cursor: pointer;
+            color: white;
+            padding: 4px;
+            border: 1px solid white;
+            border-radius: 8px;
+            opacity: .5;
+            transition: opacity .5s ease;
+            background: rgba(0,0,0,.2);
+            }
+            #langSelector:hover{
+                opacity: 1;
+
+            }
+        script.
+            var hall = !{JSON.stringify(hall)};
+            var lang = !{JSON.stringify(lang)};
+    body(style="opacity: 0;")
+        .videoWrapper#videoWrapper(style="background-image:url(/images/sorry_eng.png);background-position: center;background-size: contain;")
+
+        script(src="/lib/video.js")
+        script(src="/lib/silvermine-videojs-quality-selector.min.js")
+        script.
+            updateSource();
+            function updateSource(state){
+                axios.get("/currplayer/"+hall+"/"+lang)
+                    .then(function (r){
+
+                        if(r.data.state!=state){
+                            var myVideo = document.getElementById("my-video");
+                            if (myVideo) {
+                                var oldPlayer = document.getElementById('my-video');
+                                videojs(oldPlayer).dispose();
+                                console.log("destroy player")
+                            }
+                            var html=""
+                            switch (r.data.state)
+                            {
+                                case "0":html=r.data.codes.z;break;
+                                case "1":html=r.data.codes.o;break;
+                                case "2":html=r.data.codes.b;break;
+                            }
+                            if(html.length>0) {
+                                document.getElementById("videoWrapper").innerHTML = html;
+                                var myVideo = document.getElementById("my-video");
+                                if(myVideo){
+                                    setTimeout(initCDNPlayer,100)
+                                }
+                                state=r.data.state;
+                            }
+                        }
+                        setTimeout(function(){updateSource(state)},40*1000)
+                    })
+                    .catch(function (e) {
+                        console.warn(e);
+                        setTimeout(function(){updateSource(state)},40*1000)
+                    })
+            }
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'UA-88562228-1');
+
+            function initCDNPlayer() {
+                console.log("initCDNPlayer")
+                var elem=document.getElementById("my-video");
+                var stream=elem.getAttribute("stream");
+                console.log("stream", stream)
+                var src = [
+                    {
+                        src: "https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/"+stream+"/playlist.m3u8",//"https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/" + (hall == "ms" ? "ms" : "dev") + "_" + lang.toLowerCase() + "/playlist.m3u8",
+                        label: "1080P",
+                        selected: true
+                    },
+                    {
+                        src: "https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/" + stream + "_low/playlist.m3u8",//"https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/" + (hall == "ms" ? "ms" : "dev") + "_" + lang.toLowerCase() + "/playlist.m3u8",
+                        label: "720P",
+                        selected: false
+                    }
+                ];
+               /* var match = hall.match(/hall(\d\d)/);
+                if (match && parseInt(match[1]) > 10) {
+                    src[0].src = "https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/hall" + match[1] + "_" + lang.toLowerCase() + "/playlist.m3u8"
+                }*/
+
+                var player = videojs('my-video');
+
+                player.src(src);
+                player.poster("/poster/" + hall + "_" + lang.toLowerCase() + ".png");
+                player.controlBar.addChild('QualitySelector');
+                //player.play();
+                player.tech_.on("retryplaylist", function (){
+                    console.log("retryplaylist")
+                    restartPlay();
+                    })
+                player.on("error", function() {
+                    console.log("error")
+                    restartPlay();
+                })
+                function restartPlay() {
+                    setTimeout(function(){player.src(src);
+                    player.play();},5 * 1000)}
+            }
+
+            document.body.style.opacity = 1;
+
+            startStat();
+            function startStat(){
+                var uuid=localStorage.getItem("uuid"+hall+lang);
+                if(!uuid || true){
+                     axios.post("/api/newUser",{hall:hall,lang:lang}).then(function (ret) {
+                         localStorage.setItem("uuid"+hall+lang, ret.data)
+                         stat();
+                     }).catch(function (e) {
+                         stat();
+                     })
+
+                }
+                else stat();
+            }
+            function stat() {
+                console.log("aliveUser")
+                axios.post("/api/aliveUser",{hall:hall,lang:lang})
+                    .then(function (ret) {setTimeout(stat,30*1000) })
+                    .catch(function (e) {setTimeout(stat, 30*1000)})
+            }

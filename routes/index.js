@@ -19,6 +19,17 @@ router.get('/dev/:hall/:lang?', function(req, res, next) {
     return res.redirect("/dev/hall00/"+req.params.lang);
   res.render('dev', {hall:req.params.hall, lang:req.params.lang} );
 })
+router.get('/sorry/:hall/:lang?', function(req, res, next) {
+
+  if(!req.params.lang)
+    req.params.lang="ru";
+  if(!(req.params.lang=="ru"|| req.params.lang=="en"))
+    req.params.lang="ru";
+
+  if(req.params.hall=="ms")
+    return res.redirect("/dev/hall00/"+req.params.lang);
+  res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+})
 
 router.post('/feedback', function(req, res, next) {
   res.json(req.body)
