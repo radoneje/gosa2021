@@ -34,4 +34,12 @@ html
     body(style="opacity: 0;")
         .videoWrapper#videoWrapper(style="background-image:url(/images/sorry_eng.png);background-position: center;background-size: contain;")
 
+        script.
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'UA-88562228-1');
 
+            document.body.style.opacity = 1;
