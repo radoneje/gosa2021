@@ -19,7 +19,7 @@ router.get('/dev/:hall/:lang?', function(req, res, next) {
     return res.redirect("/dev/hall00/"+req.params.lang);
 
   if(req.params.hall!=="hall00" && req.params.lang=="en")
-    res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
 
   res.render('dev', {hall:req.params.hall, lang:req.params.lang} );
 })
