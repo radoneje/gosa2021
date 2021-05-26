@@ -1,1 +1,243 @@
-[{"id":"hall00","lang":"ru","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"ms_ru\"></video>","b":"333"}},{"id":"hall00","lang":"en","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"ms_en\"></video>","b":"333"}},{"id":"hall01","lang":"ru","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall01_ru\"></video>","b":"333"}},{"id":"hall02","lang":"ru","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall02_ru\"></video>","b":"333"}},{"id":"hall03","lang":"ru","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall03_ru\"></video>","b":"333"}},{"id":"hall04","lang":"ru","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall04_ru\"></video>","b":"333"}},{"id":"hall05","lang":"ru","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall05_ru\"></video>","b":"333"}},{"id":"hall06","lang":"ru","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall06_ru\"></video>","b":"333"}},{"id":"hall01","lang":"en","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall01_en\"></video>","b":"333"}},{"id":"hall02","lang":"en","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall02_en\"></video><video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall02_en\"></video>","b":"333"}},{"id":"hall03","lang":"en","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall03_en\"></video>","b":"333"}},{"id":"hall04","lang":"en","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=hall04_en\"></video>","b":"333"}},{"id":"hall05","lang":"en","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall05_en\"></video>","b":"333"}},{"id":"hall06","lang":"en","state":"0","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall06_en\"></video>","b":"333"}},{"id":"hall90","lang":"ru","state":"1","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall90_ru\"></video>","b":"333"}},{"id":"hall90","lang":"en","state":"1","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall90_en\"></video>","b":"333"}},{"id":"hall91","lang":"ru","state":"1","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall91_ru\"></video>","b":"333"}},{"id":"hall92","lang":"ru","state":"1","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall92_ru\"></video>","b":"333"}},{"id":"hall93","lang":"ru","state":"1","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall93_ru\"></video>","b":"333"}},{"id":"hall94","lang":"ru","state":"1","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall94_ru\"></video>","b":"333"}},{"id":"hall95","lang":"ru","state":"1","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall95_ru\"></video>","b":"333"}},{"id":"hall96","lang":"ru","state":"1","codes":{"z":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>","o":"<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall96_ru\"></video>","b":"333"}}]
+[
+  {
+    "id": "hall00",
+    "lang": "ru",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"ms_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall00",
+    "lang": "en",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"ms_en\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall01",
+    "lang": "ru",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall01_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall02",
+    "lang": "ru",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall02_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall03",
+    "lang": "ru",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall03_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall04",
+    "lang": "ru",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall04_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall05",
+    "lang": "ru",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall05_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall06",
+    "lang": "ru",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall06_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall01",
+    "lang": "en",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall01_en\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall02",
+    "lang": "en",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall02_en\"></video><video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall02_en\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall03",
+    "lang": "en",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall03_en\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall04",
+    "lang": "en",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=hall04_en\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall05",
+    "lang": "en",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall05_en\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall06",
+    "lang": "en",
+    "state": "0",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_en\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall06_en\"></video>",
+      "b": "333"
+    }
+  },
+
+  {
+    "id": "hall21",
+    "lang": "ru",
+    "state": "1",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall91_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall22",
+    "lang": "ru",
+    "state": "1",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall92_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall23",
+    "lang": "ru",
+    "state": "1",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall93_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall24",
+    "lang": "ru",
+    "state": "1",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall94_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall25",
+    "lang": "ru",
+    "state": "1",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall95_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall21",
+    "lang": "en",
+    "state": "1",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall91_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall22",
+    "lang": "en",
+    "state": "1",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall92_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall23",
+    "lang": "en",
+    "state": "1",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall93_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall24",
+    "lang": "en",
+    "state": "1",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall94_ru\"></video>",
+      "b": "333"
+    }
+  },
+  {
+    "id": "hall25",
+    "lang": "en",
+    "state": "1",
+    "codes": {
+      "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"zagl_ru\"></video>",
+      "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall95_ru\"></video>",
+      "b": "333"
+    }
+  }
+]
