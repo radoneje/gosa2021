@@ -18,8 +18,21 @@ router.get('/dev/:hall/:lang?', function(req, res, next) {
   if(req.params.hall=="ms")
     return res.redirect("/dev/hall00/"+req.params.lang);
 
-  if(req.params.hall!=="hall00" && req.params.lang=="en")
+  if(req.params.hall=="hall01" && req.params.lang=="en")
     return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+  if(req.params.hall=="hall02" && req.params.lang=="en")
+    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+  if(req.params.hall=="hall03" && req.params.lang=="en")
+    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+  if(req.params.hall=="hall04" && req.params.lang=="en")
+    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+  if(req.params.hall=="hall05" && req.params.lang=="en")
+    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+  if(req.params.hall=="hall06" && req.params.lang=="en")
+    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+  if(req.params.hall=="hall07" && req.params.lang=="en")
+    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+
 
   res.render('dev', {hall:req.params.hall, lang:req.params.lang} );
 })
