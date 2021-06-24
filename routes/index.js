@@ -4,6 +4,36 @@ const fs = require('fs');
 
 /* GET home page. */
 
+router.get("/tt",(req, res, next)=>{
+
+  for(var i=30; i<55; i++){
+
+    fs.copyFileSync("public/poster/hall"+21+"_en.png","public/poster/hall"+i+"_en.png")
+    fs.copyFileSync("public/poster/hall"+21+"_ru.png","public/poster/hall"+i+"_ru.png")
+   /* var txt=', {\n' +
+        '    "id": "hall'+i+'",\n' +
+        '    "lang": "ru",\n' +
+        '    "state": "0",\n' +
+        '    "codes": {\n' +
+        '      "z": "<video class=\\"video video-js\\" id=\\"my-video\\" style=\\"opacity:1\\" loop controls playsinline preload=\\"auto\\" width=\\"640\\" height=\\"264\\" data-setup=\\"{}\\" stream=\\"piter_ru\\"></video>",\n' +
+        '      "o": "<video class=\\"video video-js\\" id=\\"my-video\\" style=\\"opacity:1\\" loop controls playsinline preload=\\"auto\\" width=\\"640\\" height=\\"264\\" data-setup=\\"{}\\" stream=\\"hall'+i+'_ru\\"></video>",\n' +
+        '      "b": "333"\n' +
+        '    }},'+
+        ' {\n' +
+        '    "id": "hall'+i+'",\n' +
+        '    "lang": "en",\n' +
+        '    "state": "0",\n' +
+        '    "codes": {\n' +
+        '      "z": "<video class=\\"video video-js\\" id=\\"my-video\\" style=\\"opacity:1\\" loop controls playsinline preload=\\"auto\\" width=\\"640\\" height=\\"264\\" data-setup=\\"{}\\" stream=\\"piter_en\\"></video>",\n' +
+        '      "o": "<video class=\\"video video-js\\" id=\\"my-video\\" style=\\"opacity:1\\" loop controls playsinline preload=\\"auto\\" width=\\"640\\" height=\\"264\\" data-setup=\\"{}\\" stream=\\"hall'+i+'_en\\"></video>",\n' +
+        '      "b": "333"\n' +
+        '    }}\n';
+    fs.appendFileSync("append.txt", txt)*/
+
+  }
+  res.send(200);
+})
+
 router.post('/', function(req, res, next) {
   console.log("test")
   res.json(1)
@@ -137,6 +167,7 @@ router.get('/currplayer/:hall/:lang', function(req, res, next) {
   })
 
 });
+
 
 
 
