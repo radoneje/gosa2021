@@ -28,8 +28,10 @@
 
 </style>
 <div class="videoWrapper" style="">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/qVmtTJ02b7I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <div id="langSelector" onclick="document.location.href='/playerplen.html'">EN</div>
+    <video class="video video-js" id="my-video" style="opacity:1" controls playsinline preload="auto" width="640"
+           height="264" poster="/images/sberpbru.png" data-setup="{}"><p class="vjs-no-js">To view this video please
+        enable JavaScript, and consider upgrading to a web browser that<a
+                href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p></video>
 </div>
 <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
 <script src="https://unpkg.com/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
@@ -44,7 +46,12 @@ gtag('js', new Date());
 
 
 gtag('config', 'UA-88562228-1');
-
+var player = videojs('my-video');
+player.src("https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/pbru/playlist.m3u8")
+player.srcIndex = 0;
+//player.controlBar.addChild('QualitySelector');
+document.getElementById("my-video").style.opacity = 1;
+document.querySelector('video').style.opacity = 1;
 
 </script>
 <script src="/build.js"></script>
