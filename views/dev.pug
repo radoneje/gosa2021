@@ -86,8 +86,11 @@ html
                 console.log("initCDNPlayer")
                 var elem=document.getElementById("my-video");
                 var stream=elem.getAttribute("stream");
-                if(!stream)
-                    return
+                if(!stream) {
+                     videojs('my-video');
+                    player.src(elem.getAttribute("src"));
+                    return;
+                }
                 console.log("stream", stream)
                 var src = [
                     {

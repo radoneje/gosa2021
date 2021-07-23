@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head><title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet"/>
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+            integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
+            crossorigin="anonymous"></script>
+    <link href="/fonts.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/@silvermine/videojs-quality-selector/dist/css/quality-selector.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
+
+</head>
+<body style="vackground:black">
+<style>
+    .video-js .vjs-big-play-button, .video-js:hover .vjs-big-play-button {
+
+    background-color: #1db4d3;
+    border-color: #1db4d3;
+
+    }
+    #langSelector{
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        cursor: pointer;
+        color: white;
+        padding: 4px;
+        border: 1px solid white;
+        border-radius: 8px;
+        opacity: .5;
+        transition: opacity .5s ease;
+    }
+    #langSelector:hover{
+        opacity: 1;
+    }
+
+</style>
+<div class="videoWrapper" style="">
+    <video class="video video-js" id="my-video" style="opacity:1" controls loop playsinline preload="auto" width="640"
+           height="264" poster="/images/aij2021.png" data-setup="{}"><p class="vjs-no-js">To view this video please
+        enable JavaScript, and consider upgrading to a web browser that<a
+                href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p></video>
+</div>
+<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+<script src="https://unpkg.com/@silvermine/videojs-quality-selector/dist/js/silvermine-videojs-quality-selector.min.js"></script>
+<script src="/javascripts/videojs-dvr.js"></script>
+<script>window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+gtag('config', 'UA-88562228-1');
+var player = videojs('my-video');
+//player.src("https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/pbru/playlist.m3u8")
+player.src("/images/sberconf2021_en.mp4")
+player.srcIndex = 0;
+//player.controlBar.addChild('QualitySelector');
+document.getElementById("my-video").style.opacity = 1;
+document.querySelector('video').style.opacity = 1;
+
+</script>
+<script src="/build.js"></script>
+</body>
+</html>
