@@ -70,6 +70,16 @@
     .videoBannerText:hover{
         color:#00d7cc;
     }
+    @media all  and (max-width:720px) {
+        .videoBanner.show {
+            width: 100px;
+        }
+        @keyframes banner {
+            0%{right: -100px;}
+            100%{right:0}
+        }
+
+    }
 
 </style>
 <div class="videoWrapper" style="">
@@ -103,7 +113,7 @@ player.ready(()=>{
     player.on("timeupdate", ()=>{
 
         let time=player.currentTime()
-        if(time>24 && time <36){
+        if(time>3 && time <13){
             elem.classList.add("show")
         }
         else{
