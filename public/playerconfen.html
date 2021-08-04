@@ -67,7 +67,7 @@
         padding: 10px;
         transition: color .5s ease;
     }
-    .videoBannerText:hover{
+    .videoBanner:hover .videoBannerText{
         color:#00d7cc;
     }
     @media all  and (max-width:720px) {
@@ -87,10 +87,10 @@
            height="264" poster="/images/aij2021.png" data-setup="{}"><p class="vjs-no-js">To view this video please
         enable JavaScript, and consider upgrading to a web browser that<a
                 href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p></video>
-    <div id="videoBanner" class="videoBanner">
+    <div id="videoBanner" class="videoBanner" onclick="window.open('https://ai-journey.ru/en')">
         <div class="videoBannerWr">
             <img class="videoBannerAnim" src="/images/emoAnim.gif"/>
-            <div class="videoBannerText" onclick="window.open('https://ai-journey.ru/en')"> Show Description </div>
+            <div class="videoBannerText" > Show Description </div>
         </div>
     </div>
 </div>
