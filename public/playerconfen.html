@@ -87,10 +87,10 @@
            height="264" poster="/images/aij2021.png" data-setup="{}"><p class="vjs-no-js">To view this video please
         enable JavaScript, and consider upgrading to a web browser that<a
                 href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p></video>
-    <div id="videoBanner" class="videoBanner" onclick="window.open('https://ai-journey.ru/en')">
+    <div id="videoBanner" class="videoBanner">
         <div class="videoBannerWr">
             <img class="videoBannerAnim" src="/images/emoAnim.gif"/>
-            <div class="videoBannerText" > Show Description </div>
+            <div id="videoBannerText" class="videoBannerText" ></div>
         </div>
     </div>
 </div>
@@ -104,6 +104,11 @@ function gtag() {
     dataLayer.push(arguments);
 }
 
+let bannerArr=[
+    {startSec:3*60, endSec:3*60+15, url:'https://www.sberbank.com/', title:"Show Descriprion"},
+    {startSec:4*60, endSec:4*60+15, url:'https://www.sberbank.com/', title:"Show Descriprion"}
+]
+
 gtag('js', new Date());
 
 gtag('config', 'UA-88562228-1');
@@ -111,14 +116,19 @@ var player = videojs('my-video');
 player.ready(()=>{
     let elem= document.getElementById("videoBanner")
     player.on("timeupdate", ()=>{
-
-        let time=player.currentTime()
-        if(time>3 && time <13){
-            elem.classList.add("show")
-        }
-        else{
-            elem.classList.remove("show")
-        }
+        bannerArr.forEach(e=>{
+            let time=player.currentTime()
+            if(time>e.startSec && time <e.endSec){
+                elem.classList.add("show");
+                elem.onclick=function () {
+                    window.open(e.url)
+                }
+                document.getElementById("videoBannerText").innerHTML=e.title;
+            }
+            else{
+                elem.classList.remove("show")
+            }
+        })
     })
 })
 //player.src("https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/pbru/playlist.m3u8")
