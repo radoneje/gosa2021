@@ -120,9 +120,9 @@ var player = videojs('my-video');
 player.ready(()=>{
     let elem= document.getElementById("videoBanner")
     player.on("timeupdate", ()=>{
-        console.log("timeupdate")
+        let time=player.currentTime()
         bannerArr.forEach(e=>{
-            let time=player.currentTime()
+            console.log("timeupdate", time,e.startSec,e.endSec,  time>e.startSec , time <e.endSec)
             if(time>e.startSec && time <e.endSec){
                 elem.classList.add("show");
                 elem.onclick=function () {
