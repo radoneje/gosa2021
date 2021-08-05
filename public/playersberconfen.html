@@ -120,20 +120,22 @@ var player = videojs('my-video');
 player.ready(()=>{
     let elem= document.getElementById("videoBanner")
     player.on("timeupdate", ()=>{
-        let time=player.currentTime()
+        let time=player.currentTime();
+        let show=false;
         bannerArr.forEach(e=>{
-            console.log("timeupdate", time,e.startSec,e.endSec,  time>e.startSec , time <e.endSec)
+            //console.log("timeupdate", time,e.startSec,e.endSec,  time>e.startSec , time <e.endSec)
             if(time>e.startSec && time <e.endSec){
                 elem.classList.add("show");
                 elem.onclick=function () {
                     window.open(e.url)
                 }
                 document.getElementById("videoBannerText").innerHTML=e.title;
-            }
-            else{
-                elem.classList.remove("show")
+                show=truel
             }
         })
+        if(!show)
+            elem.classList.remove("show")
+
     })
 })
 //player.src("https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/pbru/playlist.m3u8")
