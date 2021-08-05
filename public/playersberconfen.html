@@ -120,6 +120,7 @@ var player = videojs('my-video');
 player.ready(()=>{
     let elem= document.getElementById("videoBanner")
     player.on("timeupdate", ()=>{
+        console.log("timeupdate")
         bannerArr.forEach(e=>{
             let time=player.currentTime()
             if(time>e.startSec && time <e.endSec){
@@ -143,6 +144,7 @@ document.getElementById("my-video").style.opacity = 1;
 document.querySelector('video').style.opacity = 1;
 
 </script>
-<script src="/a_build.js"></script>
+
+
 </body>
 </html>
