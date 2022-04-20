@@ -11,13 +11,13 @@ gtag('config', 'UA-88562228-1');
 
 startVideo(document.getElementById("local_video"));
 var source=[
-    ["https://hls.sber.link/fabrikanews/fabrikanews1/playlist.m3u8",
-        "https://hls.sber.link/fabrikanews/fabrikanews3/playlist.m3u8",
-        "https://s13917.cdn.ngenix.net/live/_definst_/rus/playlist.m3u8?DVR"
+    ["https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/gosa2022/playlist.m3u8",
+        "https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/gosa2022/playlist.m3u8",
+        "https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/gosa2022/playlist.m3u8"
     ],
-    ["https://hls.sber.link/fabrikanews/fabrikanews2/playlist.m3u8",
-        "https://hls.sber.link/fabrikanews/fabrikanews2/playlist.m3u8",
-        "https://s13917.cdn.ngenix.net/live/_definst_/eng/playlist.m3u8?DVR"
+    ["https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/gosa2022/playlist.m3u8",
+        "https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/gosa2022/playlist.m3u8",
+        "https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/gosa2022/playlist.m3u8"
     ]
 ];
 
