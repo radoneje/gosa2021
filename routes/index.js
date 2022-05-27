@@ -22,7 +22,7 @@ router.get('/spief2022/:hall/:lang?', (req, res) => {
 
         return res.redirect("/spief2022/" + req.params.hall + "/" + "ru");
     }
-    console.log("not ", Number.isInteger(req.params.hall), (req.params.hall));
+
     if (!isNumeric(req.params.hall))
         return res.sendStatus(404)
     res.render("spievPlayer.pug",{hall:req.params.hall, lang:req.params.lang})
