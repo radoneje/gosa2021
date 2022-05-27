@@ -30,7 +30,7 @@ html
         .videoWrapper(style="overflow: hidden")
             //video(width="1280" height="720" controrls)
             video#my-video(controls style="overflow: hidden"  width="1280" height="720" class="video-js vjs-big-play-centered" playsinline poster="/images/poster/"+hall+lang+".png")
-                source( src="https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/"+hall+lang+"/playlist.m3u8" type="application/x-mpegURL")
+                source( src="https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/_"+hall+lang+"/playlist.m3u8" type="application/x-mpegURL")
 
         script(src="/lib/video.js")
         script(src="/lib/axios.min.js")
