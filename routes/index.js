@@ -1,177 +1,52 @@
 var express = require('express');
 var router = express.Router();
 const fs = require('fs');
+const process = require( 'process');
 
 /* GET home page. */
-
-router.get("/tt",(req, res, next)=>{
-
-  for(var i=30; i<55; i++){
-
-    fs.copyFileSync("public/poster/hall"+21+"_en.png","public/poster/hall"+i+"_en.png")
-    fs.copyFileSync("public/poster/hall"+21+"_ru.png","public/poster/hall"+i+"_ru.png")
-   /* var txt=', {\n' +
-        '    "id": "hall'+i+'",\n' +
-        '    "lang": "ru",\n' +
-        '    "state": "0",\n' +
-        '    "codes": {\n' +
-        '      "z": "<video class=\\"video video-js\\" id=\\"my-video\\" style=\\"opacity:1\\" loop controls playsinline preload=\\"auto\\" width=\\"640\\" height=\\"264\\" data-setup=\\"{}\\" stream=\\"piter_ru\\"></video>",\n' +
-        '      "o": "<video class=\\"video video-js\\" id=\\"my-video\\" style=\\"opacity:1\\" loop controls playsinline preload=\\"auto\\" width=\\"640\\" height=\\"264\\" data-setup=\\"{}\\" stream=\\"hall'+i+'_ru\\"></video>",\n' +
-        '      "b": "333"\n' +
-        '    }},'+
-        ' {\n' +
-        '    "id": "hall'+i+'",\n' +
-        '    "lang": "en",\n' +
-        '    "state": "0",\n' +
-        '    "codes": {\n' +
-        '      "z": "<video class=\\"video video-js\\" id=\\"my-video\\" style=\\"opacity:1\\" loop controls playsinline preload=\\"auto\\" width=\\"640\\" height=\\"264\\" data-setup=\\"{}\\" stream=\\"piter_en\\"></video>",\n' +
-        '      "o": "<video class=\\"video video-js\\" id=\\"my-video\\" style=\\"opacity:1\\" loop controls playsinline preload=\\"auto\\" width=\\"640\\" height=\\"264\\" data-setup=\\"{}\\" stream=\\"hall'+i+'_en\\"></video>",\n' +
-        '      "b": "333"\n' +
-        '    }}\n';
-    fs.appendFileSync("append.txt", txt)*/
-
-  }
-  res.send(200);
-})
-
-router.post('/', function(req, res, next) {
-  console.log("test")
-  res.json(1)
-})
-router.get('/dev/:hall/:lang?', function(req, res, next) {
-
-  if(!req.params.lang)
-    req.params.lang="ru";
-  if(!(req.params.lang=="ru"|| req.params.lang=="en"))
-    req.params.lang="ru";
-
-  if(req.params.hall=="ms")
-    return res.redirect("/dev/hall00/"+req.params.lang);
-
-  if(req.params.hall=="hall01" && req.params.lang=="en")
-    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-  if(req.params.hall=="hall02" && req.params.lang=="en")
-    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-  if(req.params.hall=="hall03" && req.params.lang=="en")
-    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-  if(req.params.hall=="hall04" && req.params.lang=="en")
-    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-  if(req.params.hall=="hall05" && req.params.lang=="en")
-    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-  if(req.params.hall=="hall06" && req.params.lang=="en")
-    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-  if(req.params.hall=="hall07" && req.params.lang=="en")
-    return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-
-
-  res.render('dev', {hall:req.params.hall, lang:req.params.lang} );
-})
-router.get('/sorry/:hall/:lang?', function(req, res, next) {
-
-  if(!req.params.lang)
-    req.params.lang="ru";
-  if(!(req.params.lang=="ru"|| req.params.lang=="en"))
-    req.params.lang="ru";
-
-  if(req.params.hall=="ms")
-    return res.redirect("/dev/hall00/"+req.params.lang);
-  res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-})
-
-router.post('/feedback', function(req, res, next) {
-  res.json(req.body)
-})
-router.get('/fas/:stream/:noFrame?', function(req, res, next) {
-  if(!req.params.stream)
-    req.params.stream=0;
-  var url=[
-      "https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/fas1/playlist.m3u8",
-    "https://hls-fabrikanews.cdnvideo.ru/fabrikanews2/fas2/playlist.m3u8"
-  ]
-  res.render('fas', { title: 'FAS forum', data:{url:url, stream:req.params.stream, noFrame:req.params.noFrame} });
-})
-router.get('/test/:lang?', function(req, res, next) {
-  if(!req.params.lang)
-    req.params.lang="RUS"
-  res.render('test', { title: 'Express', src:"https://rtmp.may24.pro/hls/st01_720p_r/index.m3u8", lang:req.params.lang.toUpperCase() });
-})
-
-router.get('/rezerv', function(req, res, next) {
-  console.log("check login", req.session.user)
-  if(!req.session.user)
-    return res.redirect("/login")
-  res.render('rezerv');
-})
-router.get('/title', function(req, res, next) {
-  console.log("check login", req.session.user)
-  if(!req.session.user)
-    return res.redirect("/login")
-  res.render('title');
-})
-
-router.get('/admin', function(req, res, next) {
-  console.log("check login", req.session.user)
-  if(!req.session.user)
-    return res.redirect("/login")
-  res.render('admin');
-})
-
-router.get('/login', function(req, res, next) {
-  req.session.user=null;
-  res.render('login');
-})
-router.post('/login', function(req, res, next) {
-  req.session.user=null;
-  console.log("req.body", req.body)
-  if(req.body.pass=="bolero123")
-  {
-    console.log("login ok")
-    req.session.user='true';
-    return res.redirect("/admin")
-  }
-  else
-    res.render('login');
-})
-router.get('/mosaic', function(req, res, next) {
-  console.log("mosaic")
-  res.render('mosaic');
-})
-router.get('/:lang?', function(req, res, next) {
-  if(!req.params.lang)
-    req.params.lang="RUS"
-  req.params.lang=req.params.lang.toUpperCase();
-  var rusIndex=req.source.id==0?1:3;
-  var engIndex=req.source.idEng==0?2:4;
-console.log(req.params.lang=="RUS", req.params.lang)
-  res.render('index', { title: 'player',langIndex:req.params.lang=="RUS"?0:1, src:(req.params.lang=="RUS"?("https://hls.sber.link/fabrikanews/fabrikanews"+rusIndex+"/playlist.m3u8"):("https://hls.sber.link/fabrikanews/fabrikanews"+engIndex+"/playlist.m3u8")), lang:req.params.lang.toUpperCase() });
-})
-router.get('/', function(req, res, next) {
-
-    req.params.lang="RUS"
-  res.redirect("/"+req.params.lang)
- // res.render('index', { title: 'Express', src:"https://hls.sber.link/fabrikanews/gosarus/playlist.m3u8", lang:req.params.lang.toUpperCase() });
-})
-router.get('/currplayer/:hall/:lang', function(req, res, next) {
-
-  fs.readFile("./halls.json", async(err, data)=>{
-    if(err)
-      return res.sendStatus(403);
-    var s=JSON.parse(data)
-    s=s.filter(item=>{
-      return item.id==req.params.hall && item.lang==req.params.lang
-    })
-    if(s.length>0)
-      return res.json(s[0]);
-    else
-      return res.sendStatus(404);
-  })
-
+router.get('/', (req, res) => {
+    res.send("Путь праведника труден, ибо препятствуют ему себялюбивые и тираны из злых людей. Блажен тот пастырь, кто во имя милосердия и доброты ведет слабых за собой сквозь долину тьмы, ибо именно он и есть тот самый, кто воистину печется о ближних своих.");
 });
+router.get('/badbrowser', (req, res) => {
+    res.render("badbrowser.pug");
+});
+router.get('/spief2022test',(req, res)=>{
+    res.render("spief2022test");
+})
+router.get('/spief2022/:hall/:lang?', (req, res) => {
+    if (!req.params.lang) {
+        return res.redirect("/spief2022/" + req.params.hall + "/" + "ru");
+    }
+    req.params.lang = req.params.lang.toLowerCase().trim();
+    if (!(req.params.lang.indexOf("ru")==0 || req.params.lang.indexOf("en")==0)) {
 
+        return res.redirect("/spief2022/" + req.params.hall + "/" + "ru");
+    }
+    console.log("not ", Number.isInteger(req.params.hall), (req.params.hall));
+    if (!isNumeric(req.params.hall))
+        return res.sendStatus(404)
+    res.render("spievPlayer.pug",{hall:req.params.hall, lang:req.params.lang})
 
+})
+function isNumeric(str) {
+    if (typeof str != "string") return false // we only process strings!
+    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+        !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+}
 
-
-
+router.post('/isAlive/', (req, res) => {
+    if (!req.body.lang || req.body.lang != "ru" || req.body.lang != "en") {
+        return res.sendStatus(404);
+    }
+    if (!Number.isInteger(req.body.hall))
+        return res.sendStatus(404)
+    if(req.body.clientid){
+        req.body.clientid=process.hrtime.bigint();
+        console.log("newClient", req.body.clientid)
+    }
+    req.aliveClient(req.body.clientid, req.body.lang ,req.body.hall);
+    res.json({clientid:clientid, timeout:20*1000});
+})
 
 
 

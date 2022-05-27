@@ -1,0 +1,83 @@
+doctype html
+html
+    head
+        title sber-pb
+        <meta charset="UTF-8">
+        <meta name="description" content="pb conference">
+        <meta name="keywords" content="sber-pb">
+        <meta name="author" content="">
+        <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+        <link href="/favicon.ico" rel="shortcut icon" >
+
+        <meta name="theme-color" content="#ffffff">
+        <meta property="og:locale" content="ru_RU">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://front.sber.link/" />
+        meta(property="og:title" content="SPIEF player")
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88562228-1"></script>
+
+        <link href=" /stylesheets/reset.css" rel="stylesheet" />
+        <link href=" /lib/video-js.css" rel="stylesheet" />
+        <link href=" /stylesheets/style.css" rel="stylesheet" />
+        script.
+            try{ eval("let a=()=>{;;};")}
+            catch (e) {
+                console.log(e)
+                document.location.href="/badbrowser.html"
+            }
+    body(style="padding:20px")
+        h1 коды Iframes
+        .iframeRow
+            .iframeItem.iframeItem1
+                .iframeItemText Номер Зала
+            .iframeItem.iframeItem2
+                .iframeItemText Язык
+            .iframeItem.iframeItem3
+                .iframeItemText Код плейера
+        .iframeRow
+            .iframeItem.iframeItem1
+                .iframeItemText 01
+            .iframeItem.iframeItem2
+                .iframeItemText ru
+            .iframeItem.iframeItem3
+                textarea#ru01.iframeItemValue(readonly value="") &lt;iframe src="https://front.sber.link/spief2022/1/ru" width="1280" height="720" border="0" style="overflow:hidden" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""&gt;&lt;/iframe&gt;
+                .btnGroups
+                    .btn(onClick="showPreview('ru01')") Посмотреть превью
+                    .btn(onClick="copyCode(this,'ru01')") Копировать код
+        .iframeRow
+            .iframeItem.iframeItem1
+                .iframeItemText 01
+            .iframeItem.iframeItem2
+                .iframeItemText ru
+            .iframeItem.iframeItem3
+                textarea#en01.iframeItemValue(readonly value="") &lt;iframe src="https://front.sber.link/spief2022/1/en" width="1280" height="720" border="0" style="overflow:hidden" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""&gt;&lt;/iframe&gt;
+                .btnGroups
+                    .btn(onClick="showPreview('en01')") Посмотреть превью
+                    .btn(onClick="copyCode(this,'en01')") Копировать код
+
+
+        h2 Iframe example
+        .iframeBox(style="width:300px")
+            .Wrapper#Wrapper
+
+        script.
+            async function copyCode(e, id){
+                var tmp=e.innerHTML;
+                var elem=document.getElementById(id);
+                await navigator.clipboard.writeText(elem.innerHTML.replace(/&lt;/g,"<").replace(/&gt;/g,">"));
+                e.innerHTML="Скопировано в буфер обмена";
+                setTimeout(()=>{e.innerHTML=tmp},1000);
+            }
+            function showPreview(id){
+                var elem=document.getElementById(id);
+                document.getElementById("Wrapper").innerHTML=elem.value
+            }
+        h2 Рекомендации для вставки с сохраниением пропорций и высоты:
+        p В <b>iframe</b> параметры <b>width</b> и <b>height</b> не менять, кod обернуть в класс <b>wrapper</b>, в стилях прописать:
+        p .wrapper { position: relative; padding-bottom: 56.25%; height: 0; width: 100%;}<br>.wrapper iframe {position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+
+
+
+
+

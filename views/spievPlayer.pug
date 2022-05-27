@@ -1,0 +1,61 @@
+doctype html
+html
+    head
+        title sber-pb
+        <meta charset="UTF-8">
+        <meta name="description" content="pb conference">
+        <meta name="keywords" content="sber-pb">
+        <meta name="author" content="">
+        <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+        <link href="/favicon.ico" rel="shortcut icon" >
+
+        <meta name="theme-color" content="#ffffff">
+        <meta property="og:locale" content="ru_RU">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://front.sber.link/" />
+        meta(property="og:title" content="SPIEF player")
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88562228-1"></script>
+
+        <link href=" /stylesheets/reset.css" rel="stylesheet" />
+        <link href=" /lib/video-js.css" rel="stylesheet" />
+        <link href=" /stylesheets/style.css" rel="stylesheet" />
+        script.
+            try{ eval("let a=()=>{;;};")}
+            catch (e) {
+                console.log(e)
+                document.location.href="/badbrowser.html"
+            }
+    body(style="overflow: hidden;")
+        .videoWrapper(style="overflow: hidden")
+            //video(width="1280" height="720" controrls)
+            video#my-video( style="overflow: hidden"  width="1280" height="720" class="video-js vjs-big-play-centered" playsinline poster="/images/poster/"+hall+lang+".png")
+                source( src="https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/"+hall+lang+"/playlist.m3u8" type="application/x-mpegURL")
+
+        script(src="/lib/video.js")
+        script(src="/lib/axios.min.js")
+        script.
+            var player = videojs('my-video')
+        script.
+            var clientid=null;
+            var hall=!{JSON.stringify(hall)};
+            var lang=!{JSON.stringify(lang)};
+            sendStatus(clientid, 20*1000);
+            async function sendStatus(clientid, timeout){
+                try{
+                    var dt=await axios.post("/isAlive",{ hall,lang,clientid});
+                    clientid=dt.data.clientid;
+                    timeout=parseInt(dt.data.timeout)|| timeout;
+                    if( ( timeout)<(10*1000)&& (timeout)>(120*1000))
+                        timeout=20*1000;
+                }
+                catch (e){console.warn("ERROR IN SEND STATUS",e)}
+                setTimeout(()=>{sendStatus(clientid, timeout)}, timeout);
+            }
+        script.
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'UA-88562228-1');
