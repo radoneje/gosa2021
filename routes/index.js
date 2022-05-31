@@ -47,6 +47,61 @@ router.post('/isAlive/', (req, res) => {
     req.aliveClient(req.body.clientid, req.body.lang ,req.body.hall);
     res.json({clientid:clientid, timeout:20*1000});
 })
+router.get('/dev/:hall/:lang?', function(req, res, next) {
+
+    if(!req.params.lang)
+        req.params.lang="ru";
+    if(!(req.params.lang=="ru"|| req.params.lang=="en"))
+        req.params.lang="ru";
+
+    if(req.params.hall=="ms")
+        return res.redirect("/dev/hall00/"+req.params.lang);
+
+    if(req.params.hall=="hall01" && req.params.lang=="en")
+        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+    if(req.params.hall=="hall02" && req.params.lang=="en")
+        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+    if(req.params.hall=="hall03" && req.params.lang=="en")
+        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+    if(req.params.hall=="hall04" && req.params.lang=="en")
+        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+    if(req.params.hall=="hall05" && req.params.lang=="en")
+        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+    if(req.params.hall=="hall06" && req.params.lang=="en")
+        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+    if(req.params.hall=="hall07" && req.params.lang=="en")
+        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+
+
+    res.render('dev', {hall:req.params.hall, lang:req.params.lang} );
+})
+router.get('/sorry/:hall/:lang?', function(req, res, next) {
+
+    if(!req.params.lang)
+        req.params.lang="ru";
+    if(!(req.params.lang=="ru"|| req.params.lang=="en"))
+        req.params.lang="ru";
+
+    if(req.params.hall=="ms")
+        return res.redirect("/dev/hall00/"+req.params.lang);
+    res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+})
+router.get('/currplayer/:hall/:lang', function(req, res, next) {
+
+    fs.readFile("./halls.json", async(err, data)=>{
+        if(err)
+            return res.sendStatus(403);
+        var s=JSON.parse(data)
+        s=s.filter(item=>{
+            return item.id==req.params.hall && item.lang==req.params.lang
+        })
+        if(s.length>0)
+            return res.json(s[0]);
+        else
+            return res.sendStatus(404);
+    })
+
+});
 
 
 
