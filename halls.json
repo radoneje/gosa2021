@@ -696,7 +696,7 @@
     "codes": {
       "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"piter_en\"></video>",
       "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall50_en\"></video>",
-      "b": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/uhy02nsOz9M\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+      "b": "<video  class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" poster='/poster/hall50_en.png' src='https://gosa2020orig.sber.link/poster/50en.mp4' >"
     }
   },
   {
@@ -712,11 +712,11 @@
   {
     "id": "hall51",
     "lang": "en",
-    "state": "0",
+    "state": "2",
     "codes": {
       "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"piter_en\"></video>",
       "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall51_en\"></video>",
-      "b": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/BauTnKtpMZM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+      "b": "<video  class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" poster='/poster/hall51_en.png' src='https://gosa2020orig.sber.link/poster/51en.mp4' >"
     }
   },
   {
@@ -732,11 +732,11 @@
   {
     "id": "hall52",
     "lang": "en",
-    "state": "0",
+    "state": "2",
     "codes": {
       "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"piter_en\"></video>",
       "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall52_en\"></video>",
-      "b": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/7H_X6_1Jlvw\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+      "b": "<video  class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" poster='/poster/hall52_en.png' src='https://gosa2020orig.sber.link/poster/52en.mp4' >"
     }
   },
   {
