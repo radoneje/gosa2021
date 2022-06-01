@@ -326,7 +326,7 @@
     "codes": {
       "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"piter_ru\"></video>",
       "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall32_ru\"></video>",
-      "b": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0XKka6zfc14\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+      "b": "<iframe id='my-video' width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0XKka6zfc14\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
     }
   },
   {
