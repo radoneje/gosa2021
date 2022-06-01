@@ -336,7 +336,7 @@
     "codes": {
       "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"piter_en\"></video>",
       "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall32_en\"></video>",
-      "b": "<video  class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" ><source src='' type='video/mp4'></source></video>"
+      "b": "<video  class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" ><source src='/a' type='video/mp4'></source></video>"
     }
   },
   {
