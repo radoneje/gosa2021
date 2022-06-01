@@ -336,7 +336,7 @@
     "codes": {
       "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"piter_en\"></video>",
       "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall32_en\"></video>",
-      "b": "<video  class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" src='https://gosa2020orig.sber.link/poster/32en.mp4' >"
+      "b": "<video  class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" poster='/poster/hall32_en.png' src='https://gosa2020orig.sber.link/poster/32en.mp4' >"
     }
   },
   {
@@ -352,7 +352,7 @@
   {
     "id": "hall33",
     "lang": "en",
-    "state": "0",
+    "state": "2",
     "codes": {
       "z": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"piter_en\"></video>",
       "o": "<video class=\"video video-js\" id=\"my-video\" style=\"opacity:1\" loop controls playsinline preload=\"auto\" width=\"640\" height=\"264\" data-setup=\"{}\" stream=\"hall33_en\"></video>",
