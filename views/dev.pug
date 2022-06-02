@@ -88,6 +88,7 @@ html
                 var stream=elem.getAttribute("stream");
                 if(!stream) {
                     var player=videojs('my-video');
+                    alert(elem.getAttribute("src"))
                     player.src(elem.getAttribute("src"));
                     return;
                 }
