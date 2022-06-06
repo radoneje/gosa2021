@@ -26,14 +26,14 @@
             },
             getIframeRu: function (item) {
                 ///*"https://front.sber.link/*
-                let ret = '<iframe src="/spief2022Iframe/'+item.id+'/ru" width="1280" height="720" border="0"\
+                let ret = '<iframe src="https://front.sber.link/spief2022Iframe/'+item.id+'/ru" width="1280" height="720" border="0"\
                                   style="overflow:hidden" frameBorder="0"\
                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"\
                                   allowFullScreen=""></iframe>' ;
                 return ret;
             },
             getIframeEn: function (item) {
-                let ret = '<iframe src="/spief2022Iframe/'+item.id+'/en" width="1280" height="720" border="0"\
+                let ret = '<iframe src="https://front.sber.link/spief2022Iframe/'+item.id+'/en" width="1280" height="720" border="0"\
                                   style="overflow:hidden" frameBorder="0"\
                                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"\
                                   allowFullScreen=""></iframe>' ;
