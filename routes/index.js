@@ -1,7 +1,25 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const fs = require('fs');
+const path = require('path');
 const process = require( 'process');
+const moment = require( 'moment');
+
+function basicAuth(req, res, next){
+    const auth = {login: 'editor', password: 'dfczgegrby'} // change this
+    const b64auth = (req.headers.authorization || '').split(' ')[1] || ''
+    const [login, password] = Buffer.from(b64auth, 'base64').toString().split(':')
+
+    // Verify login and password are set and correct
+    if (login && password && login === auth.login && password === auth.password) {
+        // Access granted...
+        return next()
+    }
+
+    // Access denied...
+    res.set('WWW-Authenticate', 'Basic realm="401"') // change this
+    res.status(401).send('Authentication required.') // custom message
+}
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -13,7 +31,86 @@ router.get('/badbrowser', (req, res) => {
 router.get('/spief2022test',(req, res)=>{
     res.render("spief2022test");
 })
-router.get('/spief2022/:hall/:lang?', (req, res) => {
+router.get('/admin',basicAuth, (req, res)=>{
+    res.render("spief2022admin");
+})
+router.get('/spief2022Iframe/:id/:lang', async (req, res) => {
+
+    req.params.lang=req.params.lang.toLowerCase();
+    if(req.params.lang!='en')
+        req.params.lang="ru";
+    var r=await fs.promises.readFile(path.join(__dirname,"../spiefHall.json"),"utf8");
+    var halls=JSON.parse(r);
+    var hall=null;
+    halls.forEach(e=>{
+       if(e.id==req.params.id)
+           hall=e;
+    });
+    if(!hall)
+        return res.json(1);//.sendStatus(404);
+
+
+    var url=((req.params.lang=="ru")?hall.data.recRu:hall.data.recEn)||"";
+    var m3u8="https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/"+hall.data.source+req.params.lang+"/playlist.m3u8"
+    var poster=(req.params.lang=="ru")?"https://front.sber.link/images/poster/1ru.png":"https://front.sber.link/images/poster/1en.png"
+    res.render("spievIframe.pug",{item:{id:hall.id, status:hall.data.status,lang:req.params.lang, source:hall.data.source ||"",url , poster, m3u8}});
+})
+router.post('/event',basicAuth, async (req, res)=>{
+
+    var r=await fs.promises.readFile(path.join(__dirname,"../spiefHall.json"),"utf8");
+    var halls=JSON.parse(r);
+    if(!req.body.id){
+        const {
+            v1: uuidv1,
+            v4: uuidv4,
+        } = require('uuid')
+        req.body.id=uuidv4();
+        halls.push({id:req.body.id});
+    }
+
+    var ret={}
+    halls.forEach(e=>{
+        if(e.id==req.body.id) {
+            e.data = req.body.data || { status:0, number:1};
+            e.date = req.body.date || moment().toISOString();
+            e.dateEnd = req.body.dateEnd || moment().toISOString();
+            ret=e;
+        }
+    });
+    await fs.promises.writeFile(path.join(__dirname,"../spiefHall.json"), JSON.stringify(halls));
+
+    res.json(ret);
+})
+router.get("/event",basicAuth, async (req, res)=> {
+   // const r=await fs.promises.readFile(path.join(__dirname,"../spiefHall.json"),"utf8");
+    res.sendFile(path.join(__dirname,"../spiefHall.json"))
+
+});
+router.post('/spief2020isAlive/', async (req, res) => {
+    if ( req.body.lang != "en" ) {
+        req.body.lang = "ru"
+    }
+    var r=await fs.promises.readFile(path.join(__dirname,"../spiefHall.json"),"utf8");
+    var halls=JSON.parse(r);
+
+    var hall=halls.filter((h)=>{return h.id==req.body.id})
+    if(hall.length==0)
+        return;
+    var status=hall[0].data.status;
+    var url=(req.body.lang=="ru")?hall[0].data.recRu:hall[0].data.recEn;
+
+    var m3u8="https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/"+hall[0].data.source+req.body.lang+"/playlist.m3u8"
+
+
+    if(req.body.clientid){
+        req.body.clientid=process.hrtime.bigint();
+        console.log("newClient", req.body.clientid)
+    }
+    //req.aliveClient(req.body.clientid, req.body.lang ,req.body.hall);
+    res.json({clientid:req.body.clientid, timeout:20*1000, status, url, m3u8});
+})
+
+    router.get('/spief2022/:hall/:lang?', (req, res) => {
     if (!req.params.lang) {
         return res.redirect("/spief2022/" + req.params.hall + "/" + "ru");
     }
@@ -25,14 +122,21 @@ router.get('/spief2022/:hall/:lang?', (req, res) => {
 
     if (!isNumeric(req.params.hall))
         return res.sendStatus(404)
-    res.render("spievPlayer.pug",{hall:req.params.hall, lang:req.params.lang})
-
+    res.render("spievPlayer.pug",{hall:req.params.hall, lang:req.params.lang});
 })
+
+
+
+
+
 function isNumeric(str) {
     if (typeof str != "string") return false // we only process strings!
     return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
         !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
 }
+
+
+
 
 router.post('/isAlive/', (req, res) => {
     if (!req.body.lang || req.body.lang != "ru" || req.body.lang != "en") {
