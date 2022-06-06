@@ -132,7 +132,8 @@
         mounted: async function () {
             const r = await axios.get("/event");
             this.events = (r.data.sort((a, b) => {
-                return moment(a.date).unix() > moment(b.date).unix()
+
+                return moment(a.date).unix() - moment(b.date).unix()
             }));
             console.log(this.events)
         }
