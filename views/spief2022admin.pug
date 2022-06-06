@@ -72,8 +72,8 @@ html
                             td
                                 div(style="position: relative;")
                                     input.form-control-sm(:value="getIframeRu(item)" style="border:none; padding:4px" readonly="readonly")
-                                    .btn-clipboard(v-on:click="copyIFrameRu(item,$event)")  iframe ru
-                                    .btn-clipboard.btn-clipboard1(v-on:click="copyIFrameRu(item, $event)") iframe en
+                                    .btn-clipboard.btn-clipboard1(v-on:click="copyIFrameRu(item,$event)")  iframe ru
+                                    .btn-clipboard(v-on:click="copyIFrameEn(item, $event)") iframe en
 
 
                             td.mobileHide
