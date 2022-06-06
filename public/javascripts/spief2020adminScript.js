@@ -20,7 +20,7 @@
             copyIFrameEn:async function (item, e){
                 var tmp=e.target.innerHTML;
                 await navigator.clipboard.writeText(this.getIframeEn(item));
-                e.target.innerHTML="скопировано";
+                e.target.innerHTML="copied";
                 setTimeout(()=>{e.target.innerHTML=tmp},2*1000)
             },
             getIframeRu: function (item) {
