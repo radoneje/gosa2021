@@ -63,7 +63,7 @@ html
                             td
                                 input.mayReadonly(v-model="item.data.moderator" style="border:none; padding:4px" v-on:change="saveEvent(item)")
                             td
-                                select.form-select(v-model="item.data.status" v-on:change="saveEvent(item)" style="width: 117px;")
+                                select.form-select.mayReadonly(v-model="item.data.status" v-on:change="saveEvent(item)" style="width: 117px;")
                                     option(value="0" selected) Заглушка
                                     option(value="1") Эфир
                                     option(value="2") Запись
