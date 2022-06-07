@@ -30,7 +30,7 @@ html
     body(style="padding:20px")
         #app.container
             .eventWr
-                .btn.btn-primary.btn-sm(@click="addEvent()") Add Event
+                .btn.btn-primary.btn-sm(@click="addEvent()" v-if="!readonly") Add Event
                 table.table-bordered.mt-4.small
                     thead
                         tr
@@ -41,13 +41,13 @@ html
                             td Статус:
                             td.mobileHide Источник сигнала:
                             td IFrame:
-                            td.mobileHide запись рус:
-                            td.mobileHide запись англ:
+                            td.mobileHide(v-if="!readonly") запись рус:
+                            td.mobileHide(v-if="!readonly") запись англ:
 
                     tbody
                         tr(v-for="item in events" :class="'adminSelectRow'+item.data.select+' liveStatus'+item.data.status")
                             td.mobileHide
-                                select(v-model="item.data.select" v-on:change="saveEvent(item)" style="border:none" )
+                                select(v-model="item.data.select" v-on:change="saveEvent(item)" style="border:none" :readonly="!readonly")
                                     option(value="0") 0
                                     option(value="1") 1
                                     option(value="2") 2
@@ -63,7 +63,7 @@ html
                             td
                                 input(v-model="item.data.moderator" style="border:none; padding:4px" v-on:change="saveEvent(item)")
                             td
-                                select.form-select(v-model="item.data.status" v-on:change="saveEvent(item)" style="width: 117px;")
+                                select.form-select(v-model="item.data.status" v-on:change="saveEvent(item)" style="width: 117px;" :readonly="!readonly")
                                     option(value="0" selected) Заглушка
                                     option(value="1") Эфир
                                     option(value="2") Запись
@@ -76,10 +76,10 @@ html
                                     .btn-clipboard(v-on:click="copyIFrameEn(item, $event)") iframe en
 
 
-                            td.mobileHide
+                            td.mobileHide(v-if="!readonly")
                                 input(v-model="item.data.recRu" style="border:none; padding:4px" v-on:change="saveEvent(item)")
 
-                            td.mobileHide
+                            td.mobileHide(v-if="!readonly")
                                 input(v-model="item.data.recEn" style="border:none; padding:4px" v-on:change="saveEvent(item)")
             .iFramesWr
 
