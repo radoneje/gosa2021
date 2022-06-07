@@ -142,6 +142,7 @@
                if(readonly) {
                    console.log("readonly true", readonly) ;
                    document.querySelectorAll(".mayReadonly").forEach(elem => {
+                       console.log("readonly set", elem) ;
                        elem.setAttribute("readonly", "true");
                    })
                }
