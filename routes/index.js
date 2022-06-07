@@ -2,21 +2,29 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
-const process = require( 'process');
-const moment = require( 'moment');
+const process = require('process');
+const moment = require('moment');
 
-function basicAuth(req, res, next){
-    const auth = {login: 'editor', password: 'dfczgegrby'} // change this
+function basicAuth(req, res, next) {
+    const auth = [
+        {login: 'editor', password: 'dfczgegrby', readonly: false},
+        {login: 'viewer', password: 'spief2022', readonly: true}
+    ]// change this
     const b64auth = (req.headers.authorization || '').split(' ')[1] || ''
     const [login, password] = Buffer.from(b64auth, 'base64').toString().split(':')
 
     // Verify login and password are set and correct
-    if (login && password && login === auth.login && password === auth.password) {
-        // Access granted...
-        return next()
+    if (login && password) {
+        var find = auth.filter(a => {
+            return login === a.login && password === a.password
+        });
+        if (find.length > 0) {
+            req.user = find[0];
+            return next();
+        }
     }
 
-    // Access denied...
+// Access denied...
     res.set('WWW-Authenticate', 'Basic realm="401"') // change this
     res.status(401).send('Authentication required.') // custom message
 }
@@ -28,105 +36,114 @@ router.get('/', (req, res) => {
 router.get('/badbrowser', (req, res) => {
     res.render("badbrowser.pug");
 });
-router.get('/spief2022test',(req, res)=>{
+router.get('/spief2022test', (req, res) => {
     res.render("spief2022test");
 })
-router.get('/admin',basicAuth, (req, res)=>{
-    res.render("spief2022admin");
+router.get('/admin', basicAuth, (req, res) => {
+    res.render("spief2022admin", {readonly: req.user.readonly});
 })
 router.get('/spief2022Iframe/:id/:lang', async (req, res) => {
 
-    req.params.lang=req.params.lang.toLowerCase();
-    if(req.params.lang!='en')
-        req.params.lang="ru";
-    var r=await fs.promises.readFile(path.join(__dirname,"../spiefHall.json"),"utf8");
-    var halls=JSON.parse(r);
-    var hall=null;
-    halls.forEach(e=>{
-       if(e.id==req.params.id)
-           hall=e;
+    req.params.lang = req.params.lang.toLowerCase();
+    if (req.params.lang != 'en')
+        req.params.lang = "ru";
+    var r = await fs.promises.readFile(path.join(__dirname, "../spiefHall.json"), "utf8");
+    var halls = JSON.parse(r);
+    var hall = null;
+    halls.forEach(e => {
+        if (e.id == req.params.id)
+            hall = e;
     });
-    if(!hall)
+    if (!hall)
         return res.json(1);//.sendStatus(404);
 
 
-    var url=((req.params.lang=="ru")?hall.data.recRu:hall.data.recEn)||"";
-    var m3u8="https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/"+hall.data.source+req.params.lang+"/playlist.m3u8"
-    var poster=(req.params.lang=="ru")?"https://front.sber.link/images/poster/1ru.png":"https://front.sber.link/images/poster/1en.png"
-    res.render("spievIframe.pug",{item:{id:hall.id, status:hall.data.status,lang:req.params.lang, source:hall.data.source ||"",url , poster, m3u8}});
+    var url = ((req.params.lang == "ru") ? hall.data.recRu : hall.data.recEn) || "";
+    var m3u8 = "https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/" + hall.data.source + req.params.lang + "/playlist.m3u8"
+    var poster = (req.params.lang == "ru") ? "https://front.sber.link/images/poster/1ru.png" : "https://front.sber.link/images/poster/1en.png"
+    res.render("spievIframe.pug", {
+        item: {
+            id: hall.id,
+            status: hall.data.status,
+            lang: req.params.lang,
+            source: hall.data.source || "",
+            url,
+            poster,
+            m3u8
+        }
+    });
 })
-router.post('/event',basicAuth, async (req, res)=>{
+router.post('/event', basicAuth, async (req, res) => {
 
-    var r=await fs.promises.readFile(path.join(__dirname,"../spiefHall.json"),"utf8");
-    var halls=JSON.parse(r);
-    if(!req.body.id){
+    var r = await fs.promises.readFile(path.join(__dirname, "../spiefHall.json"), "utf8");
+    var halls = JSON.parse(r);
+    if (!req.body.id) {
         const {
             v1: uuidv1,
             v4: uuidv4,
         } = require('uuid')
-        req.body.id=uuidv4();
-        halls.push({id:req.body.id});
+        req.body.id = uuidv4();
+        halls.push({id: req.body.id});
     }
 
-    var ret={}
-    halls.forEach(e=>{
-        if(e.id==req.body.id) {
-            e.data = req.body.data || { status:0, number:1};
+    var ret = {}
+    halls.forEach(e => {
+        if (e.id == req.body.id) {
+            e.data = req.body.data || {status: 0, number: 1};
             e.date = req.body.date || moment().toISOString();
             e.dateEnd = req.body.dateEnd || moment().toISOString();
-            ret=e;
+            ret = e;
         }
     });
-    await fs.promises.writeFile(path.join(__dirname,"../spiefHall.json"), JSON.stringify(halls));
+    await fs.promises.writeFile(path.join(__dirname, "../spiefHall.json"), JSON.stringify(halls));
 
     res.json(ret);
 })
-router.get("/event",basicAuth, async (req, res)=> {
-   // const r=await fs.promises.readFile(path.join(__dirname,"../spiefHall.json"),"utf8");
-    res.sendFile(path.join(__dirname,"../spiefHall.json"))
+router.get("/event", basicAuth, async (req, res) => {
+    // const r=await fs.promises.readFile(path.join(__dirname,"../spiefHall.json"),"utf8");
+    res.sendFile(path.join(__dirname, "../spiefHall.json"))
 
 });
 router.post('/spief2020isAlive/', async (req, res) => {
-    if ( req.body.lang != "en" ) {
+    if (req.body.lang != "en") {
         req.body.lang = "ru"
     }
-    var r=await fs.promises.readFile(path.join(__dirname,"../spiefHall.json"),"utf8");
-    var halls=JSON.parse(r);
+    var r = await fs.promises.readFile(path.join(__dirname, "../spiefHall.json"), "utf8");
+    var halls = JSON.parse(r);
 
-    var hall=halls.filter((h)=>{return h.id==req.body.id})
-    if(hall.length==0)
+    var hall = halls.filter((h) => {
+        return h.id == req.body.id
+    })
+    if (hall.length == 0)
         return;
-    var status=hall[0].data.status;
-    var url=(req.body.lang=="ru")?hall[0].data.recRu:hall[0].data.recEn;
+    var status = hall[0].data.status;
+    var url = (req.body.lang == "ru") ? hall[0].data.recRu : hall[0].data.recEn;
 
-    var m3u8="https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/"+hall[0].data.source+req.body.lang+"/playlist.m3u8"
+    var m3u8 = "https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/" + hall[0].data.source + req.body.lang + "/playlist.m3u8"
 
 
-    if(req.body.clientid){
-        req.body.clientid=process.hrtime.bigint();
+    if (req.body.clientid) {
+        req.body.clientid = process.hrtime.bigint();
         console.log("newClient", req.body.clientid)
     }
     //req.aliveClient(req.body.clientid, req.body.lang ,req.body.hall);
-    res.json({clientid:req.body.clientid, timeout:20*1000, status, url, m3u8});
+    res.json({clientid: req.body.clientid, timeout: 20 * 1000, status, url, m3u8});
 })
 
-    router.get('/spief2022/:hall/:lang?', (req, res) => {
+router.get('/spief2022/:hall/:lang?', (req, res) => {
     if (!req.params.lang) {
         return res.redirect("/spief2022/" + req.params.hall + "/" + "ru");
     }
     req.params.lang = req.params.lang.toLowerCase().trim();
-    if (!(req.params.lang.indexOf("ru")==0 || req.params.lang.indexOf("en")==0)) {
+    if (!(req.params.lang.indexOf("ru") == 0 || req.params.lang.indexOf("en") == 0)) {
 
         return res.redirect("/spief2022/" + req.params.hall + "/" + "ru");
     }
 
     if (!isNumeric(req.params.hall))
         return res.sendStatus(404)
-    res.render("spievPlayer.pug",{hall:req.params.hall, lang:req.params.lang});
+    res.render("spievPlayer.pug", {hall: req.params.hall, lang: req.params.lang});
 })
-
-
-
 
 
 function isNumeric(str) {
@@ -136,77 +153,74 @@ function isNumeric(str) {
 }
 
 
-
-
 router.post('/isAlive/', (req, res) => {
     if (!req.body.lang || req.body.lang != "ru" || req.body.lang != "en") {
         return res.sendStatus(404);
     }
     if (!Number.isInteger(req.body.hall))
         return res.sendStatus(404)
-    if(req.body.clientid){
-        req.body.clientid=process.hrtime.bigint();
+    if (req.body.clientid) {
+        req.body.clientid = process.hrtime.bigint();
         console.log("newClient", req.body.clientid)
     }
-    req.aliveClient(req.body.clientid, req.body.lang ,req.body.hall);
-    res.json({clientid:clientid, timeout:20*1000});
+    req.aliveClient(req.body.clientid, req.body.lang, req.body.hall);
+    res.json({clientid: clientid, timeout: 20 * 1000});
 })
-router.get('/dev/:hall/:lang?', function(req, res, next) {
+router.get('/dev/:hall/:lang?', function (req, res, next) {
 
-    if(!req.params.lang)
-        req.params.lang="ru";
-    if(!(req.params.lang=="ru"|| req.params.lang=="en"))
-        req.params.lang="ru";
+    if (!req.params.lang)
+        req.params.lang = "ru";
+    if (!(req.params.lang == "ru" || req.params.lang == "en"))
+        req.params.lang = "ru";
 
-    if(req.params.hall=="ms")
-        return res.redirect("/dev/hall00/"+req.params.lang);
+    if (req.params.hall == "ms")
+        return res.redirect("/dev/hall00/" + req.params.lang);
 
-    if(req.params.hall=="hall01" && req.params.lang=="en")
-        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-    if(req.params.hall=="hall02" && req.params.lang=="en")
-        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-    if(req.params.hall=="hall03" && req.params.lang=="en")
-        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-    if(req.params.hall=="hall04" && req.params.lang=="en")
-        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-    if(req.params.hall=="hall05" && req.params.lang=="en")
-        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-    if(req.params.hall=="hall06" && req.params.lang=="en")
-        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
-    if(req.params.hall=="hall07" && req.params.lang=="en")
-        return res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+    if (req.params.hall == "hall01" && req.params.lang == "en")
+        return res.render('sorry', {hall: req.params.hall, lang: req.params.lang});
+    if (req.params.hall == "hall02" && req.params.lang == "en")
+        return res.render('sorry', {hall: req.params.hall, lang: req.params.lang});
+    if (req.params.hall == "hall03" && req.params.lang == "en")
+        return res.render('sorry', {hall: req.params.hall, lang: req.params.lang});
+    if (req.params.hall == "hall04" && req.params.lang == "en")
+        return res.render('sorry', {hall: req.params.hall, lang: req.params.lang});
+    if (req.params.hall == "hall05" && req.params.lang == "en")
+        return res.render('sorry', {hall: req.params.hall, lang: req.params.lang});
+    if (req.params.hall == "hall06" && req.params.lang == "en")
+        return res.render('sorry', {hall: req.params.hall, lang: req.params.lang});
+    if (req.params.hall == "hall07" && req.params.lang == "en")
+        return res.render('sorry', {hall: req.params.hall, lang: req.params.lang});
 
 
-    res.render('dev', {hall:req.params.hall, lang:req.params.lang} );
+    res.render('dev', {hall: req.params.hall, lang: req.params.lang});
 })
-router.get('/sorry/:hall/:lang?', function(req, res, next) {
+router.get('/sorry/:hall/:lang?', function (req, res, next) {
 
-    if(!req.params.lang)
-        req.params.lang="ru";
-    if(!(req.params.lang=="ru"|| req.params.lang=="en"))
-        req.params.lang="ru";
+    if (!req.params.lang)
+        req.params.lang = "ru";
+    if (!(req.params.lang == "ru" || req.params.lang == "en"))
+        req.params.lang = "ru";
 
-    if(req.params.hall=="ms")
-        return res.redirect("/dev/hall00/"+req.params.lang);
-    res.render('sorry', {hall:req.params.hall, lang:req.params.lang} );
+    if (req.params.hall == "ms")
+        return res.redirect("/dev/hall00/" + req.params.lang);
+    res.render('sorry', {hall: req.params.hall, lang: req.params.lang});
 })
-router.get('/currplayer/:hall/:lang', function(req, res, next) {
+router.get('/currplayer/:hall/:lang', function (req, res, next) {
 
-    fs.readFile("./halls.json", async(err, data)=>{
-        if(err)
+    fs.readFile("./halls.json", async (err, data) => {
+        if (err)
             return res.sendStatus(403);
-        var s=JSON.parse(data)
-        s=s.filter(item=>{
-            return item.id==req.params.hall && item.lang==req.params.lang
+        var s = JSON.parse(data)
+        s = s.filter(item => {
+            return item.id == req.params.hall && item.lang == req.params.lang
         })
-        if(s.length>0)
+        if (s.length > 0)
             return res.json(s[0]);
         else
             return res.sendStatus(404);
     })
 
 });
-
 
 
 module.exports = router;

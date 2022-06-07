@@ -90,7 +90,8 @@ html
                         .wrapper(v-html="getIframeEn(item)")
                         .iframeItemTile {{item.data.title}} en
 
-
+        script.
+            var readonly=!{JSON.stringify(readonly)}
         script(src="/lib/vue.min.js")
         script(src="/lib/axios.min.js")
         script(src="/lib/moment.min.js")

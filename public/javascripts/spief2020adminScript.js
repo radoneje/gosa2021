@@ -2,10 +2,13 @@
     var app = new Vue({
         el: "#app",
         data: {
-            events: []
+            events: [],
+            readonly:readonly
         },
         methods: {
             addEvent: async function () {
+                if(readonly)
+                    return;
                 const r = await axios.post("/event");
                 this.events.unshift(r.data);
             },
@@ -39,11 +42,15 @@
                 return ret;
             },
             saveEvent: async function (item) {
+                if(readonly)
+                    return;
                 const r = await axios.post("/event", item);
                 console.log(item)
             },
             changeDate: function (event, item) {
 
+                if(readonly)
+                    return;
                 document.querySelectorAll(".inplaceDiv").forEach(e=>{
                     e.parentElement.removeChild(e);
                 })
