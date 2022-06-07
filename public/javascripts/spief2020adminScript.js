@@ -139,10 +139,12 @@
         watch:{
             events:function(){
                console.log(this.events, readonly) ;
-               if(readonly)
-                   document.querySelectorAll(".mayReadonly").forEach(elem=>{
+               if(readonly) {
+                   console.log("readonly true", readonly) ;
+                   document.querySelectorAll(".mayReadonly").forEach(elem => {
                        elem.setAttribute("readonly", "true");
                    })
+               }
             }
         },
         mounted: async function () {
