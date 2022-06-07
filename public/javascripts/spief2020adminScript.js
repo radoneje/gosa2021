@@ -137,7 +137,7 @@
         },
         watch:{
             events:function(){
-               console.log(events) ;
+               console.log(this.events) ;
             }
         },
         mounted: async function () {
