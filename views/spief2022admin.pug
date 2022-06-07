@@ -59,9 +59,9 @@ html
                                 spm -
                                 span {{moment(item.dateEnd).format('HH:mm')}}
                             td
-                                input.mayReadonly(v-model="item.data.title" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+                                input.mayReadonly(v-model="item.data.title" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")
                             td
-                                input.mayReadonly(v-model="item.data.moderator" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+                                input.mayReadonly(v-model="item.data.moderator" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")
                             td
                                 select.form-select.mayReadonly(v-model="item.data.status" v-on:change="saveEvent(item)" style="width: 117px;")
                                     option(value="0" selected) Заглушка

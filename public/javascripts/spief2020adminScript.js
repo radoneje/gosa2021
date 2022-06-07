@@ -138,14 +138,7 @@
         },
         watch:{
             events:function(){
-               console.log(this.events, readonly) ;
-               if(readonly) {
-                   console.log("readonly true", readonly) ;
-                   document.querySelectorAll(".mayReadonly").forEach(elem => {
-                       console.log("readonly set", elem) ;
-                       elem.setAttribute("readonly", "true");
-                   })
-               }
+
             }
         },
         mounted: async function () {
