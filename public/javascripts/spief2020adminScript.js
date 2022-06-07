@@ -138,7 +138,7 @@
         },
         watch:{
             events:function(){
-               console.log(this.events) ;
+               console.log(this.events, readonly) ;
                if(readonly)
                    document.querySelectorAll(".mayReadonly").forEach(elem=>{
                        elem.setAttribute("readonly", "true");
