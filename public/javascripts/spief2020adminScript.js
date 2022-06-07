@@ -135,6 +135,11 @@
                 }
             }
         },
+        watch:{
+            events:function(){
+               console.log(events) ;
+            }
+        },
         mounted: async function () {
             const r = await axios.get("/event");
             this.events = (r.data.sort((a, b) => {

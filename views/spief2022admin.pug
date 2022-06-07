@@ -47,7 +47,7 @@ html
                     tbody
                         tr(v-for="item in events" :class="'adminSelectRow'+item.data.select+' liveStatus'+item.data.status")
                             td.mobileHide
-                                select(v-model="item.data.select" v-on:change="saveEvent(item)" style="border:none" :readonly="!readonly")
+                                select.mayReadonly(v-model="item.data.select" v-on:change="saveEvent(item)" style="border:none" )
                                     option(value="0") 0
                                     option(value="1") 1
                                     option(value="2") 2
@@ -59,16 +59,16 @@ html
                                 spm -
                                 span {{moment(item.dateEnd).format('HH:mm')}}
                             td
-                                input(v-model="item.data.title" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+                                input.mayReadonly(v-model="item.data.title" style="border:none; padding:4px" v-on:change="saveEvent(item)")
                             td
-                                input(v-model="item.data.moderator" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+                                input.mayReadonly(v-model="item.data.moderator" style="border:none; padding:4px" v-on:change="saveEvent(item)")
                             td
-                                select.form-select(v-model="item.data.status" v-on:change="saveEvent(item)" style="width: 117px;" v-bind:class="{readonly:true}")
+                                select.form-select(v-model="item.data.status" v-on:change="saveEvent(item)" style="width: 117px;")
                                     option(value="0" selected) Заглушка
                                     option(value="1") Эфир
                                     option(value="2") Запись
                             td.mobileHide
-                                input(v-model="item.data.source" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+                                input.mayReadonly(v-model="item.data.source" style="border:none; padding:4px" v-on:change="saveEvent(item)")
                             td
                                 div(style="position: relative;")
                                     input.form-control-sm(:value="getIframeRu(item)" style="border:none; padding:4px" readonly="readonly")
@@ -77,10 +77,10 @@ html
 
 
                             td.mobileHide(v-if="!readonly")
-                                input(v-model="item.data.recRu" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+                                input.mayReadonly(v-model="item.data.recRu" style="border:none; padding:4px" v-on:change="saveEvent(item)")
 
                             td.mobileHide(v-if="!readonly")
-                                input(v-model="item.data.recEn" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+                                input.mayReadonly(v-model="item.data.recEn" style="border:none; padding:4px" v-on:change="saveEvent(item)")
             .iFramesWr
 
                     .IframesItem(v-for="item in events")
