@@ -47,7 +47,7 @@ html
                     tbody
                         tr(v-for="item in events" :class="'adminSelectRow'+item.data.select+' liveStatus'+item.data.status")
                             td.mobileHide
-                                select.mayReadonly(v-model="item.data.select" v-on:change="saveEvent(item)" style="border:none" )
+                                select.mayReadonly(v-model="item.data.select" v-on:change="saveEvent(item)" style="border:none" :readonly="readonly")
                                     option(value="0") 0
                                     option(value="1") 1
                                     option(value="2") 2
