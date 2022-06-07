@@ -141,7 +141,7 @@
 
                 return moment(a.date).unix() - moment(b.date).unix()
             }));
-            console.log(this.events)
+            console.log("readonly", readonly)
         }
     });
 })();
