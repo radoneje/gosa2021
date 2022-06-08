@@ -59,10 +59,10 @@ html
                             td
                                 .tabName
                                     select.mayReadonly(v-model="item.data.select" v-on:change="saveEvent(item)" style="border:none" :disabled="readonly")
-                                        option(value="0") 0
-                                        option(value="1") 1
-                                        option(value="2") 2
-                                        option(value="3") 3
+                                        option(value="0" selected) новая
+                                        option(value="1") подтвержденная
+                                        option(value="2") ожидаем
+                                        option(value="3") отказ
                                     input.mayReadonly(v-model="item.data.title" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")
 
                                 input.mayReadonly(v-model="item.data.moderator" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")
