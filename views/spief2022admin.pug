@@ -40,7 +40,7 @@ html
                             td дата
                             //td НАЗВАНИЕ СЕССИИ
                             td Модератор1:
-                            td Статус:
+                            // td Статус:
                             td.mobileHide Источник сигнала:
                             td IFrame:
                             td.mobileHide(v-if="!readonly") запись рус:
@@ -48,12 +48,8 @@ html
 
                     tbody
                         tr(v-for="item in events" :class="'adminSelectRow'+item.data.select+' liveStatus'+item.data.status")
-                            td.mobileHide
-                                select.mayReadonly(v-model="item.data.select" v-on:change="saveEvent(item)" style="border:none" :disabled="readonly")
-                                    option(value="0") 0
-                                    option(value="1") 1
-                                    option(value="2") 2
-                                    option(value="3") 3
+                            //td.mobileHide
+
                             td(v-on:click="changeDate($event, item)")
                                 span {{moment(item.date).format('DD.MM')}}
                                 spm <br>
@@ -62,6 +58,11 @@ html
                                 span {{moment(item.dateEnd).format('HH:mm')}}
                             td
                                 .tabName
+                                    select.mayReadonly(v-model="item.data.select" v-on:change="saveEvent(item)" style="border:none" :disabled="readonly")
+                                        option(value="0") 0
+                                        option(value="1") 1
+                                        option(value="2") 2
+                                        option(value="3") 3
                                     input.mayReadonly(v-model="item.data.title" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")
 
                                 input.mayReadonly(v-model="item.data.moderator" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")

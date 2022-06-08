@@ -6,6 +6,19 @@
             readonly:readonly
         },
         methods: {
+            eventStsusDescr:function (i){
+                /*0 - новая сессия
+1 - подтвержденная сессия
+2 - ожидаем подтверждение
+3 - отказ от сессии/отмена
+
+*/          switch (i){
+                    case 1: return "подтвержденная"; break;
+                    case 1: return "ожидаем "; break;
+                    case 1: return "отказ "; break;
+                    default: return "новая"; break;
+                }
+            },
             addEvent: async function () {
                 if(readonly)
                     return;

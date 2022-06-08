@@ -167,11 +167,17 @@ input:focus, select:focus{
   right: 10px;
   transform: rotate(287deg);
 }
-.tabName input{
-  width: 100%;
+.tabName select{
+  width: 100px;
   box-sizing: border-box;
   font-weight: bold;
 
+}
+.tabName input{
+  width: calc(100% - 100px);
+  box-sizing: border-box;
+  font-weight: bold;
+  padding-left: 10px;
 }
 @media screen and(max-width: 870px){
   .mobileHide{
