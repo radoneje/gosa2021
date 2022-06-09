@@ -57,6 +57,10 @@ html
                 if(player)
                     player.dispose();
                 player = videojs('my-video')
+                player.on("error",()=>{
+                    console.log("player error")
+                    setTimeout(()=>{player.load();player.play()},2000)
+                })
             }
             function initPlayer() {
                 console.log("initPlayer", status)
@@ -86,7 +90,7 @@ html
                     timeout = parseInt(dt.data.timeout) || timeout;
                     if ((timeout) < (10 * 1000) && (timeout) > (120 * 1000))
                         timeout = 20 * 1000;
-                    timeout=2*1000;
+
                     if(status!=dt.data.status){
                         status=dt.data.status;
                          source = dt.data.source;
