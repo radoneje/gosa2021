@@ -286,6 +286,10 @@ router.post('/streamDown', function (req, res, next) {
     app.streamDown(req.body.name);
     res.json("ok")
 });
+router.get('/streams', function (req, res, next) {
+    
+    res.json(req.streams)
+});
 
 
 module.exports = router;

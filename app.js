@@ -127,6 +127,7 @@ app.use((req, res, next) => {
         if(streams[name])
             delete streams[name];
     };
+    req.streams=streams;
     next();
 });
 
