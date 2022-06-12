@@ -283,7 +283,10 @@ router.post('/streamPublished', function (req, res, next) {
 
 router.post('/streamDown', function (req, res, next) {
 
-    app.streamDown(req.body.name);
+    try {
+        app.streamDown(req.body.name);
+    }
+    catch (e){console.log(e)}
     res.json("ok")
 });
 router.get('/streams',basicAuth, function (req, res, next) {
