@@ -1,4 +1,10 @@
 {
+  "pgConnection": {
+    "host": "127.0.0.1",
+    "user": "postgres",
+    "password": "gbplf13",
+    "database": "spief2022"
+  },
 "frazes":
 [
   {"id":0,"text":"synthesizing the application won't do anything, we need to override the cross-platform SAS pixel!"},

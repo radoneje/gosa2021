@@ -85,7 +85,9 @@ html
             sendStatus(clientid, 20 * 1000);
             async function sendStatus(clientid, timeout) {
                 try {
-                    var dt = await axios.post("/spief2020isAlive", {id, lang, clientid});
+                    var unig=localStorage.getItem(id+lang);
+                    var dt = await axios.post("/spief2020isAlive", {id, lang, clientid, unig});
+                    localStorage.setItem(id+lang, true);
                     clientid = dt.data.clientid;
                     timeout = parseInt(dt.data.timeout) || timeout;
                     if ((timeout) < (10 * 1000) && (timeout) > (120 * 1000))

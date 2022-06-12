@@ -96,20 +96,49 @@ router.post('/event', basicAuth, async (req, res) => {
         }
     });
     await fs.promises.writeFile(path.join(__dirname, "../spiefHall.json"), JSON.stringify(halls));
+    var r=await req.knex("t_hallsupdate").insert({}, "*");
+    for(let h of halls)
+    await req.knex("t_halls").insert({updateid:r[0].id,id:h.id, date:h.date, dateEnd:h.dateEnd, data: JSON.stringify(h.data)}, "*");
 
     res.json(ret);
 })
 router.get("/event", basicAuth, async (req, res) => {
-    // const r=await fs.promises.readFile(path.join(__dirname,"../spiefHall.json"),"utf8");
     res.sendFile(path.join(__dirname, "../spiefHall.json"))
 
 });
+
+router.get("/eventRawStat/:hallid", basicAuth, async (req, res) => {
+
+    var r=await req.knex.select("*").from("v_rowStat").where({id:req.params.hallid});
+    res.json(r);
+
+});
+router.get("/eventStat", basicAuth, async (req, res) => {
+
+    var ret=await req.knex.select("*").from("v_eventsStat")
+    for(let hall of ret){
+
+       var r= await req.knex.select("*").from("t_unic").where({hallid:hall.id})
+        if(r.length>0)
+        {
+            hall.unicRu=r[0].unicru
+            hall.unicEn=r[0].unicen
+            hall.totalRu=r[0].ru
+            hall.totalEn=r[0].en
+        }
+        else{
+            hall.totalRu=0
+            hall.totalEn=0
+        }
+    }
+    res.json(ret );
+});
+
 router.post('/spief2020isAlive/', async (req, res) => {
     if (req.body.lang != "en") {
         req.body.lang = "ru"
     }
-    var r = await fs.promises.readFile(path.join(__dirname, "../spiefHall.json"), "utf8");
-    var halls = JSON.parse(r);
+    var halls = req.spiefHalls;
 
     var hall = halls.filter((h) => {
         return h.id == req.body.id
@@ -118,15 +147,32 @@ router.post('/spief2020isAlive/', async (req, res) => {
         return;
     var status = hall[0].data.status;
     var url = (req.body.lang == "ru") ? hall[0].data.recRu : hall[0].data.recEn;
-
     var m3u8 = "https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/" + hall[0].data.source + req.body.lang + "/playlist.m3u8"
 
-
-    if (req.body.clientid) {
-        req.body.clientid = process.hrtime.bigint();
+    if (!req.body.clientid) {
+        req.body.clientid = new String( process.hrtime.bigint());
         console.log("newClient", req.body.clientid)
+        let r=await req.knex.select("*").from("t_unic").where({hallid:req.body.id});
+        if(r.length==0){
+            r=await  req.knex("t_unic").insert({hallid:req.body.id, date: new Date()},"*");
+        }
+        let upd={hallid:req.body.id,  date: new Date()}
+        if (req.body.lang=="ru")
+            upd.ru=r[0].ru+1;
+        else
+            upd.en=r[0].en+1;
+
+        if(!req.body.unig ){
+            if (req.body.lang=="ru")
+                upd.unicru=r[0].unicru+1;
+            else
+                upd.unicen=r[0].unicen+1;
+        }
+        await req.knex("t_unic").update(upd).where({id:r[0].id})
+
     }
-    //req.aliveClient(req.body.clientid, req.body.lang ,req.body.hall);
+
+    req.aliveSpiefClient(req.body.clientid, req.body.lang ,req.body.id);
     res.json({clientid: req.body.clientid, timeout: 20 * 1000, status, url, m3u8});
 })
 

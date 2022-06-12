@@ -31,7 +31,35 @@ html
     body(style="padding:20px")
         #app.container
             img.gvozdika(src="images/pion.png")
-            .eventWr
+            ul.nav.nav-tabs.mb-4
+                li.nav-item(v-on:click="section=0")
+                    a.nav-link(v-bind:class="{active:section==0}" style="cursor:pointer") Статистика
+                li.nav-item(v-on:click="section=1")
+                    a.nav-link(v-bind:class="{active:section==1}" style="cursor:pointer") Управление
+            .statWr(v-if="section==0")
+                table.table-bordered.mt-4.small.tabPAd#statTable
+                    thead
+                        td(style="padding:8px") дата
+                        td(style="padding:8px") НАЗВАНИЕ СЕССИИ
+                        td(style="padding:8px") Смотрят сейчас
+                        td(style="padding:8px") Смотрело всего
+                        td(style="padding:8px") Смотрело уникальных
+                        td
+                    tbody
+                        tr(v-for="item in stat" )
+                            td(style="padding:8px") {{moment(item.date).format('DD.MM  HH:mm')}}
+                            td(style="padding:8px") {{item.data.title}}
+                            td(style="padding:8px") ru:{{item.ru}}, en:{{item.en}}
+                            td(style="padding:8px") ru:{{item.totalRu}}, en:{{item.totalEn}}
+                            td(style="padding:8px") ru:{{item.unicRu}}, en:{{item.unicEn}}
+                            td
+                                .btn.btn-primary.btn-sm(@click="showStat(item)") график
+                        tr()
+                            td(style="padding:8px") Обновлено:
+                            td(style="padding:8px") {{moment().format("DD:MM HH.mm")}}
+                .btn.btn-primary.btn-sm(@click="getToExcel()") Скачать в Numbers (MAC)
+
+            .eventWr(v-if="section==1")
                 .btn.btn-primary.btn-sm(@click="addEvent()" v-if="!readonly") Add Event
                 table.table-bordered.mt-4.small.tabPAd
                     thead
@@ -45,6 +73,7 @@ html
                             td IFrame:
                             td.mobileHide(v-if="!readonly") запись рус:
                             td.mobileHide(v-if="!readonly") запись англ:
+
 
                     tbody
                         tr(v-for="item in events" :class="'adminSelectRow'+item.data.select+' liveStatus'+item.data.status")
@@ -79,26 +108,35 @@ html
                                     .btn-clipboard.btn-clipboard1(v-on:click="copyIFrameRu(item,$event)")  iframe ru
                                     .btn-clipboard(v-on:click="copyIFrameEn(item, $event)") iframe en
 
-
                             td.mobileHide(v-if="!readonly")
                                 input.mayReadonly(v-model="item.data.recRu" style="border:none; padding:4px" v-on:change="saveEvent(item)")
 
                             td.mobileHide(v-if="!readonly")
                                 input.mayReadonly(v-model="item.data.recEn" style="border:none; padding:4px" v-on:change="saveEvent(item)")
             .iFramesWr
-
                     .IframesItem(v-for="item in events")
                         .wrapper(v-html="getIframeRu(item)")
                         .iframeItemTile {{item.data.title}}  ru
                     .IframesItem(v-for="item in events")
                         .wrapper(v-html="getIframeEn(item)")
                         .iframeItemTile {{item.data.title}} en
-
+            .modal#modal
+                .modal-dialog
+                    .modal-content
+                        .modal-header
+                            h5.modal-title Статистика
+                            button(type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="const myModal = new bootstrap.Modal(document.getElementById('modal'); myModal.hide();")
+                        .modal-body
+                            #chart
+                        .modal-footer
+                            button.btn.btn-secondary(type="button"  data-bs-dismiss="modal" aria-label="Close" ) Close
         script.
             var readonly="!{readonly}"=="true"
         script(src="/lib/vue.min.js")
         script(src="/lib/axios.min.js")
         script(src="/lib/moment.min.js")
+        script(src="/lib/anychart-base.min.js")
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         script(src="/javascripts/spief2020adminScript.js")
 
 
