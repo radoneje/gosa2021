@@ -36,6 +36,26 @@ html
                     a.nav-link(v-bind:class="{active:section==0}" style="cursor:pointer") Статистика
                 li.nav-item(v-on:click="section=1")
                     a.nav-link(v-bind:class="{active:section==1}" style="cursor:pointer") Управление
+                li.nav-item(v-on:click="section=2")
+                    a.nav-link(v-bind:class="{active:section==2}" style="cursor:pointer") Входящие rtmp
+
+            .statWr(v-if="section==2")
+                table.table-bordered.mt-4.small.tabPAd
+                    thead
+                        td(style="padding:8px") дата
+                        td(style="padding:8px") НАЗВАНИЕ СЕССИИ
+                        td(style="padding:8px") статус
+                        td(style="padding:8px") URL русский
+                        td(style="padding:8px") URL английский
+
+                    tbody
+                            tr(v-for="item in events" v-if="item.data.select<3")
+                                td(style="padding:8px") {{moment(item.date).format('DD.MM  HH:mm')}}
+                                td(style="padding:8px") {{item.data.title}}
+                                td(style="padding:8px") {{item.data.select}}
+                                td(style="padding:8px") {{item.data.source ? ("rtmp://rtmp.sber.link/live/" + item.data.source.toLowerCase().trim() + "_ru") : ""}}
+                                td(style="padding:8px") {{item.data.source ? ("rtmp://rtmp.sber.link/live/" + item.data.source.toLowerCase().trim() + "_en") : ""}}
+
             .statWr(v-if="section==0")
                 table.table-bordered.mt-4.small.tabPAd#statTable
                     thead
