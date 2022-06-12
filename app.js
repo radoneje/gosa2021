@@ -118,6 +118,18 @@ async function updateSpiefHalls() {
     setTimeout(clearSpiefClients, 10 * 1000);
 }
 
+var streams={};
+app.use((req, res, next) => {
+    req.streamUp = function(name){
+        streams[name]=new Date();
+    };
+    req.streamDown = function(name){
+        if(streams[name])
+            delete streams[name];
+    };
+    next();
+});
+
 app.use((req, res, next) => {
     req.spiefHalls = spiefHalls;
     next();
