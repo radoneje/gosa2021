@@ -278,6 +278,10 @@ router.get('/streamPublished/:p?', function (req, res, next) {
     console.log("streamPublished", reg.body)
     res.json("ok")
 });
+router.post('/streamPublished/:p?', function (req, res, next) {
+    console.log("streamPublished post", reg.body)
+    res.json("ok")
+});
 
 router.get('/streamDown/:p?', function (req, res, next) {
     console.log("streamDown", reg.body)
