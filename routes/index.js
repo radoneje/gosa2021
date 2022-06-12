@@ -108,9 +108,14 @@ router.get("/event", basicAuth, async (req, res) => {
 });
 
 router.get("/eventRawStat/:hallid", basicAuth, async (req, res) => {
-
     var r=await req.knex.select("*").from("v_rowStat").where({id:req.params.hallid});
     res.json(r);
+
+});
+router.get("/inputStreams", basicAuth, async (req, res) => {
+    var r=await req.knex.select("*").from("t_halls").orderBy("date");
+
+    res.render("inputStreams", {r})
 
 });
 router.get("/eventStat", basicAuth, async (req, res) => {
