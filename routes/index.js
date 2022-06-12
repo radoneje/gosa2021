@@ -277,7 +277,7 @@ router.get('/currplayer/:hall/:lang', function (req, res, next) {
 
 router.post('/streamPublished', function (req, res, next) {
     try {
-    app.streamUp(req.body.name);
+    req.streamUp(req.body.name);
     }
     catch (e){console.log(e)}
     res.json("ok")
@@ -286,7 +286,7 @@ router.post('/streamPublished', function (req, res, next) {
 router.post('/streamDown', function (req, res, next) {
 
     try {
-        app.streamDown(req.body.name);
+        req.streamDown(req.body.name);
     }
     catch (e){console.log(e)}
     res.json("ok")
