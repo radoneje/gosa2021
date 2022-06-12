@@ -43,12 +43,13 @@ html
 
                     tbody
                         each item in r
-                            tr(v-for="item in stat" )
-                                td(style="padding:8px") !{moment(item.date).format('DD.MM  HH:mm')}
-                                td(style="padding:8px") #{item.data.title}
-                                td(style="padding:8px") #{item.data.select}
-                                td(style="padding:8px") !{item.data.source?("rtmp://rtmp.sber.link/live/"+item.data.source.toLowerCase().trim()+"_ru"):""}
-                                td(style="padding:8px") !{item.data.source?("rtmp://rtmp.sber.link/live/"+item.data.source.toLowerCase().trim()+"_en"):""}
+                            if( r.data.select<3)
+                                tr(v-for="item in stat" )
+                                    td(style="padding:8px") !{moment(item.date).format('DD.MM  HH:mm')}
+                                    td(style="padding:8px") #{item.data.title}
+                                    td(style="padding:8px") #{item.data.select}
+                                    td(style="padding:8px") !{item.data.source?("rtmp://rtmp.sber.link/live/"+item.data.source.toLowerCase().trim()+"_ru"):""}
+                                    td(style="padding:8px") !{item.data.source?("rtmp://rtmp.sber.link/live/"+item.data.source.toLowerCase().trim()+"_en"):""}
 
 
 
