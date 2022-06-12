@@ -274,12 +274,12 @@ router.get('/currplayer/:hall/:lang', function (req, res, next) {
 });
 
 
-router.post('/streamPublished', function (req, res, next) {
+router.get('/streamPublished/:p?', function (req, res, next) {
     console.log("streamPublished", reg.body)
     res.json("ok")
 });
 
-router.post('/streamDown', function (req, res, next) {
+router.get('/streamDown/:p?', function (req, res, next) {
     console.log("streamDown", reg.body)
     res.json("ok")
 });
