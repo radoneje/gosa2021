@@ -43,7 +43,7 @@ html
 
                     tbody
                         each item in r
-                            if( r.data.select<3)
+                            if( item.data.select<3)
                                 tr(v-for="item in stat" )
                                     td(style="padding:8px") !{moment(item.date).format('DD.MM  HH:mm')}
                                     td(style="padding:8px") #{item.data.title}
