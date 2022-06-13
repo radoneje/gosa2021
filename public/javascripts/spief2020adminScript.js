@@ -11,6 +11,11 @@
             diskSpace:{}
         },
         methods: {
+            dropPublisher:async function (key, name){
+                if(!confirm("Drop publisher?"))
+                    return;
+                axios.post("/dropPublisher",{name:key+"_"+name});
+            },
             numberWithSpaces:function(x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
             },

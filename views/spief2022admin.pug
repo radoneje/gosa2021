@@ -74,12 +74,14 @@ html
                                     div {{item.data.source ? ("rtmp://rtmp.sber.link/live/" + item.data.source.toLowerCase().trim() + "_ru") : ""}}
                                     div
                                         span.badge.bg-success(v-if="checkPublish(item.data.source.toLowerCase().trim(), 'ru')") Pub: {{checkPublish(item.data.source.toLowerCase().trim(), 'ru')}}
+                                            span(@click="dropPublisher(item.data.source.toLowerCase().trim(), 'en')") drop
                                         span.badge.bg-success(v-if="checkRec(item.data.source.toLowerCase().trim(), 'ru')") Rec: {{checkRec(item.data.source.toLowerCase().trim(), 'ru')}}
                                         span.badge.bg-success(v-if="checkRestream(item.data.source.toLowerCase().trim(), 'ru')") Stream: {{checkRestream(item.data.source.toLowerCase().trim(), 'ru')}}
                                 td(style="padding:8px")
                                     div {{item.data.source ? ("rtmp://rtmp.sber.link/live/" + item.data.source.toLowerCase().trim() + "_en") : ""}}
                                     div
                                         span.badge.bg-success(v-if="checkPublish(item.data.source.toLowerCase().trim(), 'en')") Pub: {{checkPublish(item.data.source.toLowerCase().trim(), 'en')}}
+                                            span(@click="dropPublisher(item.data.source.toLowerCase().trim(), 'en')") drop
                                         span.badge.bg-success(v-if="checkRec(item.data.source.toLowerCase().trim(), 'en')") Rec: {{checkRec(item.data.source.toLowerCase().trim(), 'en')}}
                                         span.badge.bg-success(v-if="checkRestream(item.data.source.toLowerCase().trim(), 'en')") Stream: {{checkRestream(item.data.source.toLowerCase().trim(), 'en')}}
 

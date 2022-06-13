@@ -342,5 +342,12 @@ router.get('/records', basicAuth, async function (req, res, next) {
 function numberWithSpaces(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
+router.post('/dropPublisher', basicAuth, async function (req, res, next) {
+
+    res.json(1);
+    console.log("dropPublisher", "http://192.168.1.118/control/drop/publisher?app=live&name="+req.body.name)
+    await axios.get("http://192.168.1.118/control/drop/publisher?app=live&name="+req.body.name);
+});
+
 
 module.exports = router;
