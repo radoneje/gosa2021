@@ -13,6 +13,11 @@
         methods: {
             showRecord:function (filename){
                 filename="https://front.sber.link/video/"+filename;
+                const myModal = new bootstrap.Modal(document.getElementById('modal'))
+                myModal.show();
+
+                document.getElementById("chart").innerHTML="<video src='"+filename+"' controls></video>";
+
 
             },
             copyRecord:function (filename, event){
