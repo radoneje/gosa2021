@@ -50,6 +50,7 @@ html
                         tr(v-for="item in records" )
                             td(style="padding:8px") {{item.name}}
                             td(style="padding:8px") {{item.size}}
+                            td(style="padding:8px")
                                 button.btn.btn-success.btn-sm Копировать ссылку
             .statWr(v-if="section==2")
                 table.table-bordered.mt-4.small.tabPAd
