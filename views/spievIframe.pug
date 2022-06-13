@@ -7,9 +7,7 @@ html
         <meta name="keywords" content="sber-pb">
         <meta name="author" content="">
         <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
         <link href="/favicon.ico" rel="shortcut icon" >
-
         <meta name="theme-color" content="#ffffff">
         <meta property="og:locale" content="ru_RU">
         <meta property="og:type" content="website" />
@@ -17,9 +15,9 @@ html
         meta(property="og:title" content="SPIEF player")
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88562228-1"></script>
 
-        <link href=" /stylesheets/reset.css" rel="stylesheet" />
-        <link href=" /lib/video-js.css" rel="stylesheet" />
-        <link href=" /stylesheets/style.css" rel="stylesheet" />
+        <link href="https://front.sber.link/stylesheets/reset.css" rel="stylesheet" />
+        <link href="https://front.sber.link/lib/video-js.css" rel="stylesheet" />
+        <link href="https://front.sber.link/stylesheets/style.css" rel="stylesheet" />
         script.
             try {
                 eval("let a=()=>{;;};")
@@ -29,16 +27,10 @@ html
             }
     body(style="overflow: hidden;")
         .videoWrapper(style="overflow: hidden")
-            //video(width="1280" height="720" controrls)
-            //video#my-video(controls loop style="overflow: hidden"  width="1280" height="720" class="video-js vjs-big-play-centered" playsinline poster=item.poster)
-                source( src="/test.mp4" type="video/mp4")
-                //source( src="https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/_"+hall+lang+"/playlist.m3u8" type="application/x-mpegURL")
 
+        script(src="https://front.sber.link/lib/video.js")
+        script(src="https://front.sber.link/lib/axios.min.js")
 
-        script(src="/lib/video.js")
-        script(src="/lib/axios.min.js")
-        script.
-            // = videojs('my-video')
         script.
             var player;
             var clientid = null;
