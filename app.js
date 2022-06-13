@@ -110,12 +110,13 @@ async function clearSpiefClients() {
 const spiefHallFilename = path.join(__dirname, "spiefHall.json");
 if (fs.existsSync(spiefHallFilename))
     spiefHalls = JSON.parse(fs.readFileSync(spiefHallFilename, "utf8"));
+
 updateSpiefHalls();
 
 async function updateSpiefHalls() {
     if (fs.existsSync(spiefHallFilename))
         spiefHalls = JSON.parse(await fs.promises.readFile(spiefHallFilename, "utf8"));
-    setTimeout(clearSpiefClients, 10 * 1000);
+    setTimeout(updateSpiefHalls, 10 * 1000);
 }
 
 var streams={};
