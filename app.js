@@ -129,6 +129,7 @@ app.use((req, res, next) => {
     };
     req.recStarted=function(key, lang){
         let name=key+"_"+lang;
+        console.log("recStarted: ",streams[name])
         if(streams[name])
             streams[name].rec=new Date();
     }
