@@ -36,6 +36,8 @@
                 })
 
                 document.getElementById('modal').addEventListener('hide.bs.modal',()=>{
+                    video.pause();
+                    video.parentNode.removeChild(video)
                     document.getElementById("chart").innerHTML="";
                 })
 
