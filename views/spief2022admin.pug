@@ -74,7 +74,7 @@ html
                                     div {{item.data.source ? ("rtmp://rtmp.sber.link/live/" + item.data.source.toLowerCase().trim() + "_ru") : ""}}
                                     div
                                         span.badge.bg-success(v-if="checkPublish(item.data.source.toLowerCase().trim(), 'ru')") Pub: {{checkPublish(item.data.source.toLowerCase().trim(), 'ru')}}
-                                            span(style="padding-left:1em; cursor:pointer" @click="dropPublisher(item.data.source.toLowerCase().trim(), 'en')") drop
+                                            span(style="padding-left:1em; cursor:pointer" @click="dropPublisher(item.data.source.toLowerCase().trim(), 'ru')") drop
                                         span.badge.bg-success(v-if="checkRec(item.data.source.toLowerCase().trim(), 'ru')") Rec: {{checkRec(item.data.source.toLowerCase().trim(), 'ru')}}
                                         span.badge.bg-success(v-if="checkRestream(item.data.source.toLowerCase().trim(), 'ru')") Stream: {{checkRestream(item.data.source.toLowerCase().trim(), 'ru')}}
                                 td(style="padding:8px")
