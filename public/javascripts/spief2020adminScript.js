@@ -17,7 +17,11 @@
                 myModal.show();
 
                 document.getElementById("chart").innerHTML="<video id='recVideo' src='"+filename+"' controls style='width:100%'></video>";
-                document.getElementById('recVideo').play();
+                let video=document.getElementById('recVideo');
+                video.addEventListener('loadedmetadata',()=>{
+                    video.play();
+                })
+
                 document.getElementById('modal').addEventListener('hide.bs.modal',()=>{
                     document.getElementById("chart").innerHTML="";
                 })
