@@ -16,7 +16,7 @@
                 const myModal = new bootstrap.Modal(document.getElementById('modal'))
                 myModal.show();
 
-                document.getElementById("chart").innerHTML="<video src='"+filename+"' controls></video>";
+                document.getElementById("chart").innerHTML="<video src='"+filename+"' controls style='width:100%'></video>";
 
 
             },
