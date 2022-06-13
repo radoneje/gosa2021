@@ -121,7 +121,7 @@ async function updateSpiefHalls() {
 var streams={};
 app.use((req, res, next) => {
     req.streamUp = function(name){
-        streams[name]=new Date();
+        streams[name]={start:new Date()};
     };
     req.streamDown = function(name){
         if(streams[name])
