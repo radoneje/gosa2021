@@ -5,10 +5,29 @@
             events: [],
             readonly:readonly,
             section:0,
-            stat:[]
-
+            stat:[],
+            streams:{}
         },
         methods: {
+            checkPublish: function(key, lang){
+                if(streams[key+"_"+lang]) {
+                    var l=moment.utc(moment().diff(moment(streams[key + "_" + lang].start))).format("HH:mm:ss")
+                    return l
+                }
+                return false;
+            },
+            updateStreams:async function(){
+                try{
+                   var r=await axios.get("/streams")
+                    this.streams=r.data;
+                }
+                catch(e){
+                    console.warn(e);
+                }
+                setTimeout(()=>{
+                    this.updateStreams()
+                },5000)
+            },
             showStat:async function(item){
                 const myModal = new bootstrap.Modal(document.getElementById('modal'))
                 myModal.show();
@@ -230,6 +249,7 @@
             }));
             var re=await axios.get("/eventStat")
             this.stat=re.data;
+            this.updateStreams();
             console.log("readonly", readonly)
         }
     });
