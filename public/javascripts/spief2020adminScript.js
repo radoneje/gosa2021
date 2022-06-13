@@ -10,8 +10,8 @@
         },
         methods: {
             checkPublish: function(key, lang){
-                if(streams[key+"_"+lang]) {
-                    var l=moment.utc(moment().diff(moment(streams[key + "_" + lang].start))).format("HH:mm:ss")
+                if(this.streams[key+"_"+lang]) {
+                    var l=moment.utc(moment().diff(moment(this.streams[key + "_" + lang].start))).format("HH:mm:ss")
                     return l
                 }
                 return false;
