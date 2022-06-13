@@ -328,6 +328,7 @@ router.post('/recStarted', function (req, res, next) {
 });
 router.get('/records', basicAuth, async function (req, res, next) {
     let files=await fs.promises.readdir("/var/video")
+    files=files.filter(f=>f.match(/\.mp4$/))
     res.json(files)
 });
 
