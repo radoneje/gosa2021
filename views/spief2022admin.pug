@@ -47,7 +47,7 @@ html
                         td &nbsp;
                     tbody
                         tr(v-for="item in records" )
-                            td(style="padding:8px") {{moment(item.date).format('DD.MM  HH:mm')}}
+                            td(style="padding:8px") {{item}}
                             td(style="padding:8px")
                                 button.btn.btn-secondary Копировать ссылку
             .statWr(v-if="section==2")
