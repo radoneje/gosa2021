@@ -153,7 +153,7 @@ router.post('/spief2020isAlive/', async (req, res) => {
         return;
     var status = hall[0].data.status;
     var url = (req.body.lang == "ru") ? hall[0].data.recRu : hall[0].data.recEn;
-    var m3u8 = "https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/" + hall[0].data.source + req.body.lang + "/playlist.m3u8"
+    var m3u8 = "https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/" + hall[0].data.source +"_"+ req.body.lang + "/playlist.m3u8"
 
     if (!req.body.clientid) {
         req.body.clientid = new String( process.hrtime.bigint());
