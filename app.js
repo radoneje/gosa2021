@@ -139,6 +139,7 @@ app.use((req, res, next) => {
             streams[name].restream=new Date();
     }
     req.recStopped=function(key, lang){
+        console.log("recStopped: ",streams[name])
         let name=key+"_"+lang;
         if(streams[name])
             delete streams[name].rec
