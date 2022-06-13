@@ -31,12 +31,12 @@
 
                 document.getElementById("chart").innerHTML="<video id='recVideo' src='"+filename+"' controls style='width:100%'></video>";
                 let video=document.getElementById('recVideo');
-                video.addEventListener('loadedmetadata',()=>{
-                    video.play();
-                })
+                let listener=()=>{video.play();}
+                video.addEventListener('loadedmetadata',listener)
 
                 document.getElementById('modal').addEventListener('hide.bs.modal',()=>{
                     video.pause();
+                    video.removeEventListener('loadedmetadata',listener)
                     video.parentNode.removeChild(video)
                     document.getElementById("chart").innerHTML="";
                 })
