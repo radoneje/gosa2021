@@ -17,7 +17,9 @@
                 myModal.show();
 
                 document.getElementById("chart").innerHTML="<video src='"+filename+"' controls style='width:100%'></video>";
-
+                myModal.addEventListener('hidden.bs.modal',()=>{
+                    document.getElementById("chart").innerHTML="";
+                })
 
             },
             copyRecord:function (filename, event){
