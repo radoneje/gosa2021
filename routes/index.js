@@ -281,7 +281,7 @@ router.post('/streamPublished', function (req, res, next) {
 
         var m = req.body.name.match(/^([a-z]\d)_([re]{1}[un]{1})$/)
         if (m) {
-            console.log(m1, m2);
+            console.log(m[1], m[2]);
         }
     }
     catch (e){console.log(e)}
