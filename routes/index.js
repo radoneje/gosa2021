@@ -328,8 +328,14 @@ router.post('/recStarted', function (req, res, next) {
     res.json(1)
 });
 router.get('/records', basicAuth, async function (req, res, next) {
-    let files=await fs.promises.readdir("/var/video")
-    files=files.filter(f=>f.match(/\.mp4$/))
+    let items=await fs.promises.readdir("/var/video")
+    items=items.filter(f=>f.match(/\.mp4$/))
+    let files=[]
+    for(item of items){
+       let stat=await fs.promises.stat(path.join("/var/video", item));
+       files.push({name:item, size:stat.size});
+    }
+
     let diskSpace=checkDiskSpace("/var/video")
     res.json({files, diskSpace})
 });

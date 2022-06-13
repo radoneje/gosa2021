@@ -44,11 +44,12 @@ html
                 table.table-bordered.mt-4.small.tabPAd
                     thead
                         td(style="padding:8px") Файл
+                        td Размер;
                         td &nbsp;
                     tbody
                         tr(v-for="item in records" )
-                            td(style="padding:8px") {{item}}
-                            td(style="padding:8px")
+                            td(style="padding:8px") {{item.name}}
+                            td(style="padding:8px") {{item.size}}
                                 button.btn.btn-success.btn-sm Копировать ссылку
             .statWr(v-if="section==2")
                 table.table-bordered.mt-4.small.tabPAd
