@@ -336,7 +336,7 @@ router.get('/records', basicAuth, async function (req, res, next) {
        files.push({name:item, size:numberWithSpaces(stat.size)});
     }
 
-    let diskSpace=checkDiskSpace("/var/video")
+    let diskSpace=await checkDiskSpace("/var/video")
     res.json({files, diskSpace})
 });
 function numberWithSpaces(x) {
