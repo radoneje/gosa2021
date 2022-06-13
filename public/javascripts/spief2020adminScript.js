@@ -37,7 +37,9 @@
                 document.getElementById('modal').addEventListener('hide.bs.modal',()=>{
                     video.pause();
                     video.removeEventListener('loadedmetadata',listener)
-                    video.parentNode.removeChild(video)
+                    try {
+                        video.parentNode.removeChild(video)
+                    }catch (e){}
                     document.getElementById("chart").innerHTML="";
                 })
 
