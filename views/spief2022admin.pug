@@ -95,44 +95,49 @@ html
                             td.mobileHide(v-if="!readonly") запись англ:
 
 
-                    tbody
-                        tr(v-for="item in events" :class="'adminSelectRow'+item.data.select+' liveStatus'+item.data.status")
-                            //td.mobileHide
+                    tbody(v-for="item in events")
 
-                            td(v-on:click="changeDate($event, item)")
-                                span {{moment(item.date).format('DD.MM')}}
-                                spm <br>
-                                span {{moment(item.date).format('HH:mm')}}
-                                spm -
-                                span {{moment(item.dateEnd).format('HH:mm')}}
-                            td
-                                .tabName
-                                    select.mayReadonly(v-model="item.data.select" v-on:change="saveEvent(item)" style="border:none" :disabled="readonly")
-                                        option(value="0" selected) новая
-                                        option(value="1") подтвержденная
-                                        option(value="2") ожидаем
-                                        option(value="3") отказ
-                                    input.mayReadonly(v-model="item.data.title" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")
+                            tr(:class="'adminSelectRow'+item.data.select+' liveStatus'+item.data.status")
+                                td(colspan="7" style="position: relative;")
+                                    .tabName
+                                        select.mayReadonly(v-model="item.data.select" v-on:change="saveEvent(item)" style="border:none" :disabled="readonly")
+                                            option(value="0" selected) новая
+                                            option(value="1") подтвержденная
+                                            option(value="2") ожидаем
+                                            option(value="3") отказ
+                                        input.mayReadonly(v-model="item.data.title" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")
 
-                                input.mayReadonly(v-model="item.data.moderator" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")
-                            td
-                                select.form-select.mayReadonly(v-model="item.data.status" v-on:change="saveEvent(item)" style="width: 117px;" :disabled="readonly")
-                                    option(value="0" selected) Заглушка
-                                    option(value="1") Эфир
-                                    option(value="2") Запись
-                            td.mobileHide
-                                input.mayReadonly(v-model="item.data.source" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")
-                            td
-                                div(style="position: relative;")
-                                    input.form-control-sm(:value="getIframeRu(item)" style="border:none; padding:4px" readonly="readonly")
-                                    .btn-clipboard.btn-clipboard1(v-on:click="copyIFrameRu(item,$event)")  iframe ru
-                                    .btn-clipboard(v-on:click="copyIFrameEn(item, $event)") iframe en
 
-                            td.mobileHide(v-if="!readonly")
-                                input.mayReadonly(v-model="item.data.recRu" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+                            tr(:class="'adminSelectRow'+item.data.select+' liveStatus'+item.data.status")
 
-                            td.mobileHide(v-if="!readonly")
-                                input.mayReadonly(v-model="item.data.recEn" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+                                td(v-on:click="changeDate($event, item)")
+                                    span {{moment(item.date).format('DD.MM')}}
+                                    spm <br>
+                                    span {{moment(item.date).format('HH:mm')}}
+                                    spm -
+                                    span {{moment(item.dateEnd).format('HH:mm')}}
+                                td
+
+
+                                    input.mayReadonly(v-model="item.data.moderator" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")
+                                td
+                                    select.form-select.mayReadonly(v-model="item.data.status" v-on:change="saveEvent(item)" style="width: 117px;" :disabled="readonly")
+                                        option(value="0" selected) Заглушка
+                                        option(value="1") Эфир
+                                        option(value="2") Запись
+                                td.mobileHide
+                                    input.mayReadonly(v-model="item.data.source" style="border:none; padding:4px" v-on:change="saveEvent(item)" :readonly="readonly")
+                                td
+                                    div(style="position: relative;")
+                                        input.form-control-sm(:value="getIframeRu(item)" style="border:none; padding:4px" readonly="readonly")
+                                        .btn-clipboard.btn-clipboard1(v-on:click="copyIFrameRu(item,$event)")  iframe ru
+                                        .btn-clipboard(v-on:click="copyIFrameEn(item, $event)") iframe en
+
+                                td.mobileHide(v-if="!readonly")
+                                    input.mayReadonly(v-model="item.data.recRu" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+
+                                td.mobileHide(v-if="!readonly")
+                                    input.mayReadonly(v-model="item.data.recEn" style="border:none; padding:4px" v-on:change="saveEvent(item)")
             .iFramesWr
                     .IframesItem(v-for="item in events")
                         .wrapper(v-html="getIframeRu(item)")
