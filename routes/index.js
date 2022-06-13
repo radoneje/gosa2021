@@ -302,6 +302,22 @@ router.get('/streams',basicAuth, function (req, res, next) {
 
     res.json(req.streams)
 });
+router.post('/restreamStopped', function (req, res, next) {
+    console.log('restreamStopped')
+    res.json(1)
+});
+router.post('/restreamStarted', function (req, res, next) {
+    console.log('restreamStarted')
+    res.json(1)
+});
+router.post('/recStopped', function (req, res, next) {
+    console.log('recStopped')
+    res.json(1)
+});
+router.post('/recStarted', function (req, res, next) {
+    console.log('recStarted')
+    res.json(1)
+});
 
 
 module.exports = router;
