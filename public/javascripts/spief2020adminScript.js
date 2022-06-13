@@ -17,7 +17,7 @@
                 myModal.show();
 
                 document.getElementById("chart").innerHTML="<video src='"+filename+"' controls style='width:100%'></video>";
-                myModal.addEventListener('hidden.bs.modal',()=>{
+                myModal.addEventListener('hide.bs.modal',()=>{
                     document.getElementById("chart").innerHTML="";
                 })
 
