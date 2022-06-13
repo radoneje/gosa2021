@@ -56,7 +56,8 @@ html
                                 td(style="padding:8px")
                                     div {{item.data.source ? ("rtmp://rtmp.sber.link/live/" + item.data.source.toLowerCase().trim() + "_ru") : ""}}
                                     div
-                                        span(v-if="checkPublish(item.data.source.toLowerCase().trim(), 'ru')") Опубликован: {{checkPublish(item.data.source.toLowerCase().trim(), 'ru')}}
+                                        span.badge.bg-success(v-if="checkPublish(item.data.source.toLowerCase().trim(), 'ru')") Опубликован: {{checkPublish(item.data.source.toLowerCase().trim(), 'ru')}}
+                                        span.badge.bg-success(v-if="checkRec(item.data.source.toLowerCase().trim(), 'ru')") Rec: {{checkRec(item.data.source.toLowerCase().trim(), 'ru')}}
                                 td(style="padding:8px") {{item.data.source ? ("rtmp://rtmp.sber.link/live/" + item.data.source.toLowerCase().trim() + "_en") : ""}}
 
             .statWr(v-if="section==0")

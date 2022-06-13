@@ -9,6 +9,14 @@
             streams:{}
         },
         methods: {
+            checkRec: function(key, lang){
+                if(!this.streams[key+"_"+lang])
+                    return false;
+                if(!this.streams[key+"_"+lang].rec)
+                    return false;
+                var l=moment.utc(moment().diff(moment(this.streams[key + "_" + lang].rec))).format("HH:mm:ss")
+                return l
+            },
             checkPublish: function(key, lang){
                 if(this.streams[key+"_"+lang]) {
                     var l=moment.utc(moment().diff(moment(this.streams[key + "_" + lang].start))).format("HH:mm:ss")
