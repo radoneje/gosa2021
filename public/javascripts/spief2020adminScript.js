@@ -7,7 +7,8 @@
             section:0,
             stat:[],
             streams:{},
-            records:[]
+            records:[],
+            diskSpace:{}
         },
         methods: {
             checkRestream: function(key, lang){
@@ -257,7 +258,8 @@
                 if(this.section==3)
                 {
                     var r=await axios.get("/records")
-                    this.records=r.data;
+                    this.records=r.data.files;
+                    this.diskSpace=r.data.diskSpace;
                 }
 
 
@@ -273,7 +275,8 @@
              r=await axios.get("/eventStat")
             this.stat=r.data;
              r=await axios.get("/records")
-            this.records=r.data;
+            this.records=r.data.files;
+             this.diskSpace=r.data.diskSpace;
 
             this.updateStreams();
             console.log("readonly", readonly)

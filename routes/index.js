@@ -5,6 +5,7 @@ const path = require('path');
 const process = require('process');
 const moment = require('moment');
 const axios = require('axios');
+const checkDiskSpace = require('check-disk-space').default
 
 function basicAuth(req, res, next) {
     const auth = [
@@ -329,7 +330,8 @@ router.post('/recStarted', function (req, res, next) {
 router.get('/records', basicAuth, async function (req, res, next) {
     let files=await fs.promises.readdir("/var/video")
     files=files.filter(f=>f.match(/\.mp4$/))
-    res.json(files)
+    let diskSpace=checkDiskSpace("/var/video")
+    res.json({files, diskSpace})
 });
 
 
