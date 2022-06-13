@@ -333,12 +333,14 @@ router.get('/records', basicAuth, async function (req, res, next) {
     let files=[]
     for(item of items){
        let stat=await fs.promises.stat(path.join("/var/video", item));
-       files.push({name:item, size:stat.size});
+       files.push({name:item, size:numberWithSpaces(stat.size)});
     }
 
     let diskSpace=checkDiskSpace("/var/video")
     res.json({files, diskSpace})
 });
-
+function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
 
 module.exports = router;
