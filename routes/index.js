@@ -180,7 +180,7 @@ router.post('/spief2020isAlive/', async (req, res) => {
     }
 
     req.aliveSpiefClient(req.body.clientid, req.body.lang ,req.body.id);
-    res.json({clientid: req.body.clientid, timeout: 20 * 1000, status, url, m3u8});
+    res.json({clientid: req.body.clientid, timeout: 2 * 1000, status, url, m3u8});
 })
 
 router.get('/spief2022/:hall/:lang?', (req, res) => {
