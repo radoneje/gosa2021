@@ -314,7 +314,7 @@ router.post('/restreamStarted', function (req, res, next) {
     res.json(1)
 });
 router.post('/recStopped', function (req, res, next) {
-    console.log('recStopped')
+    console.log('recStopped', req.body.key, req.body.lang)
     try {
         req.recStopped(req.body.key, req.body.lang);
     }
