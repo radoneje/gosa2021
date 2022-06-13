@@ -317,7 +317,7 @@ router.post('/recStopped', function (req, res, next) {
     try {
         req.recStopped(req.body.key, req.body.lang);
     }
-    catch (r){cosole.warn(e)}
+    catch (e){cosole.warn(e)}
     res.json(1)
 
 });
