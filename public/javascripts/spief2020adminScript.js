@@ -11,6 +11,17 @@
             diskSpace:{}
         },
         methods: {
+            showRecord:function (filename){
+                filename="https://front.sber.link/video/"+filename;
+
+            },
+            copyRecord:function (filename, event){
+                filename="https://front.sber.link/video/"+filename;
+                let tmp=event.target.innerHTML;
+                navigator.clipboard.writeText(filename);
+                event.target.innerHTML="Copied";
+                setTimeout(()=>{event.target.innerHTML=tmp},2000)
+            },
             checkRestream: function(key, lang){
                 if(!this.streams[key+"_"+lang])
                     return false;

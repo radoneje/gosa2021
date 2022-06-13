@@ -48,10 +48,10 @@ html
                         td(style="padding:8px") &nbsp;
                     tbody
                         tr(v-for="item in records" )
-                            td(style="padding:8px") {{item.name}}
+                            td(style="padding:8px; cursor:pointer" @click="showRecord(item.name)") {{item.name}}
                             td(style="padding:8px; width:150px;" ) {{item.size}}
                             td(style="padding:8px")
-                                button.btn.btn-success.btn-sm Копировать ссылку
+                                button.btn.btn-success.btn-sm( @click="copyRecord(item.name,$event )") Копировать ссылку
             .statWr(v-if="section==2")
                 table.table-bordered.mt-4.small.tabPAd
                     thead
