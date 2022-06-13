@@ -275,13 +275,14 @@ router.get('/currplayer/:hall/:lang', function (req, res, next) {
 
 
 
-router.post('/streamPublished', function (req, res, next) {
+router.post('/streamPublished', async function (req, res, next) {
     try {
         req.streamUp(req.body.name);
 
         var m = req.body.name.match(/^([a-z]\d)_([re]{1}[un]{1})$/)
         if (m) {
-            console.log(m[1], m[2]);
+            await axios.post("http://192.168.1.7:8080/streamPublished",{key:m[1], lang:[m2]});
+            console.log("send command to publish stream", m[1],m[2])
         }
     }
     catch (e){console.log(e)}
