@@ -12,7 +12,7 @@
         },
         methods: {
             showRecord:function (filename){
-                filename="https://front.sber.link/video/"+filename;
+                filename="https://gosa2020orig.sber.link/video/"+filename;
                 const myModal = new bootstrap.Modal(document.getElementById('modal'))
                 myModal.show();
 
