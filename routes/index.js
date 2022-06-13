@@ -326,6 +326,10 @@ router.post('/recStarted', function (req, res, next) {
     req.recStarted(req.body.key, req.body.lang);
     res.json(1)
 });
+router.get('/records', basicAuth, async function (req, res, next) {
+    let files=fs.promises.readdir("/var/video")
+    res.json(files)
+});
 
 
 module.exports = router;

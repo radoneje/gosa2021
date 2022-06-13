@@ -6,7 +6,8 @@
             readonly:readonly,
             section:0,
             stat:[],
-            streams:{}
+            streams:{},
+            records:[]
         },
         methods: {
             checkRestream: function(key, lang){
@@ -253,18 +254,27 @@
                     var r=await axios.get("/eventStat")
                     this.stat=r.data;
                 }
+                if(this.section==3)
+                {
+                    var r=await axios.get("/records")
+                    this.records=r.data;
+                }
+
 
             }
 
         },
         mounted: async function () {
-            const r = await axios.get("/event");
+            let r = await axios.get("/event");
             this.events = (r.data.sort((a, b) => {
 
                 return moment(a.date).unix() - moment(b.date).unix()
             }));
-            var re=await axios.get("/eventStat")
-            this.stat=re.data;
+             r=await axios.get("/eventStat")
+            this.stat=r.data;
+             r=await axios.get("/records")
+            this.records=r.data;
+
             this.updateStreams();
             console.log("readonly", readonly)
         }
