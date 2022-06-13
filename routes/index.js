@@ -277,7 +277,12 @@ router.get('/currplayer/:hall/:lang', function (req, res, next) {
 
 router.post('/streamPublished', function (req, res, next) {
     try {
-    req.streamUp(req.body.name);
+        req.streamUp(req.body.name);
+
+        var m = req.body.name.match(/^([a-z]\d)_([re]{1}[un]{1})$/)
+        if (m) {
+            console.log(m1, m2);
+        }
     }
     catch (e){console.log(e)}
     res.json("ok")
