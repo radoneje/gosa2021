@@ -86,7 +86,7 @@ async function clearSpiefClients() {
         });
         if (curr.length > 0) {
             let ru = curr.filter(cr => {
-                return cr.lang = 'ru'
+                return cr.lang == 'ru'
             }).length;
             let en = curr.length - ru;
             halls.push({id:hall.id, ru, en});
@@ -193,11 +193,11 @@ app.use((req, res, next) => {
                     c.time = moment().unix();
             })
         };
-        req.spiefClients = () => {
+        req.spiefClients = spiefClients;/*() => {
             return spiefClients.filter(() => {
                 return true
             })
-        }
+        }*/
         next();
     }
 );
