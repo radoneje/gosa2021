@@ -41,6 +41,7 @@ html
                 li.nav-item(v-on:click="section=3")
                     a.nav-link(v-bind:class="{active:section==3}" style="cursor:pointer") Записи
             .statWr(v-if="section==3")
+                .div.mt3 Disk Space Free {{diskSpace.free}} {{diskSpaceFree()}}
                 table.table-bordered.mt-4.small.tabPAd
                     thead
                         td(style="padding:8px") Файл

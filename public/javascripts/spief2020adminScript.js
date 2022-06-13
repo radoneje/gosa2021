@@ -11,6 +11,14 @@
             diskSpace:{}
         },
         methods: {
+            numberWithSpaces:function(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+            },
+            diskSpaceFree:function(){
+                if(!diskSpace.free)
+                    return "";
+                return parseInt((parseFloat(diskSpace.free)/parseFloat(diskSpace.size))*100)+"%"
+            },
             showRecord:function (filename){
                 filename="https://gosa2020orig.sber.link/video/"+filename;
                 const myModal = new bootstrap.Modal(document.getElementById('modal'))
