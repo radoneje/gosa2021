@@ -63,7 +63,7 @@ html
                 })
             }
             function initPlayer() {
-                console.log("initPlayer", status)
+
 
                 if (status == 0) {
                     document.querySelector(".videoWrapper").innerHTML = ""
@@ -98,7 +98,7 @@ html
                          source = dt.data.source;
                         url = dt.data.url;
                          m3u8 = dt.data.m3u8;
-                        //console.log(status,source, dt.data );
+
                         initPlayer();
                     }
                 } catch (e) {
