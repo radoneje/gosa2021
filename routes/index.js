@@ -304,7 +304,7 @@ router.get('/streams',basicAuth, function (req, res, next) {
     res.json(req.streams)
 });
 router.post('/restreamStopped', function (req, res, next) {
-    console.log('restreamStopped')
+    console.log('restreamStopped', req.body.key, req.body.lang)
     req.restreamStopped(req.body.key, req.body.lang);
     res.json(1)
 });
