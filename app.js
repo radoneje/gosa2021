@@ -127,6 +127,27 @@ app.use((req, res, next) => {
         if(streams[name])
             delete streams[name];
     };
+    req.recStarted=function(key, lang){
+        let name=key+"_"+lang;
+        if(streams[name])
+            streams[name].rec=new Date();
+    }
+    req.restreamStarted=function(key, lang){
+        let name=key+"_"+lang;
+        if(streams[name])
+            streams[name].restream=new Date();
+    }
+    req.recStopped=function(key, lang){
+        let name=key+"_"+lang;
+        if(streams[name])
+            delete streams[name].rec
+    }
+    req.restreamStopped=function(key, lang){
+        let name=key+"_"+lang;
+        if(streams[name])
+            delete streams[name].restream
+    }
+
     req.streams=streams;
     next();
 });

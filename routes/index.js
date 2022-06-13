@@ -304,18 +304,22 @@ router.get('/streams',basicAuth, function (req, res, next) {
 });
 router.post('/restreamStopped', function (req, res, next) {
     console.log('restreamStopped')
+    req.restreamStopped(req.body.key, req.body.lang);
     res.json(1)
 });
 router.post('/restreamStarted', function (req, res, next) {
     console.log('restreamStarted')
+    req.restreamStarted(req.body.key, req.body.lang);
     res.json(1)
 });
 router.post('/recStopped', function (req, res, next) {
     console.log('recStopped')
+    req.recStopped(req.body.key, req.body.lang);
     res.json(1)
 });
 router.post('/recStarted', function (req, res, next) {
     console.log('recStarted')
+    req.recStarted(req.body.key, req.body.lang);
     res.json(1)
 });
 
