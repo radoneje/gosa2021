@@ -348,6 +348,10 @@ router.post('/dropPublisher', basicAuth, async function (req, res, next) {
     console.log("dropPublisher", "http://192.168.1.118/control/drop/publisher?app=live&name="+req.body.name)
     await axios.get("http://192.168.1.118/control/drop/publisher?app=live&name="+req.body.name);
 });
+router.get('/breakfast', async function (req, res, next) {
+
+   res.render("breakfast");
+});
 
 
 module.exports = router;
