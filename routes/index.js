@@ -151,7 +151,7 @@ router.post('/spief2020isAlive/', async (req, res) => {
         return h.id == req.body.id
     })
     if (hall.length == 0)
-        return;
+        return res.sendStatus(404);
     var status = hall[0].data.status;
     var url = (req.body.lang == "ru") ? hall[0].data.recRu : hall[0].data.recEn;
     var m3u8 = "https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/" + hall[0].data.source.toLowerCase() +"_"+ req.body.lang + "/playlist.m3u8"
