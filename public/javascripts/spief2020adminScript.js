@@ -206,6 +206,7 @@
                 })
                 var wr = document.createElement("div")
                 wr.classList.add("inplaceDiv")
+                wr.style.position="absolute"
                 wr.style.top = (event.pageY - 20) + "px"
                 wr.style.left = (event.pageX - 20) + "px"
                 var inputStart = document.createElement("input")
