@@ -61,6 +61,8 @@ router.get('/spief2022Iframe/:id/:lang', async (req, res) => {
 
 
     var url = ((req.params.lang == "ru") ? hall.data.recRu : hall.data.recEn) || "";
+    if(!hall.data.source)
+        hall.data.source="";
     var m3u8 = "https://hls-fabrikanews.cdnvideo.ru/fabrikanews4/" + hall.data.source.toLowerCase() +"_"+ req.params.lang + "/playlist.m3u8"
     var poster = (req.params.lang == "ru") ? "https://front.sber.link/images/poster/1ru.png" : "https://front.sber.link/images/poster/1en.png"
     res.render("spievIframe.pug", {
