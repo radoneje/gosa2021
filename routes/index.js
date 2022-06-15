@@ -281,7 +281,7 @@ router.post('/streamPublished', async function (req, res, next) {
     try {
         req.streamUp(req.body.name);
 
-        var m = req.body.name.match(/^([a-z]\d)_([re]{1}[un]{1})$/)
+        var m = req.body.name.match(/^([a-z]\d{0,3})_([re]{1}[un]{1})$/)
         if (m) {
             await axios.post("http://192.168.1.7:3000/streamPublished",{key:m[1], lang:m[2]});
             console.log("send command to publish stream", m[1],m[2])
