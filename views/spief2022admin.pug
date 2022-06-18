@@ -162,10 +162,10 @@ html
                                         .btn-clipboard.btn-clipboard1(v-on:click="copyIFrameRu(item,$event)")  iframe ru
                                         .btn-clipboard(v-on:click="copyIFrameEn(item, $event)") iframe en
 
-                                td.mobileHide(v-if="!readonly")
+                                td.mobileHide()
                                     input(v-model="item.data.recRu" style="border:none; padding:4px" readonly="readonly")
 
-                                td.mobileHide(v-if="!readonly")
+                                td.mobileHide()
                                     input(v-model="item.data.recEn" style="border:none; padding:4px"  readonly="readonly")
             .iFramesWr
                     .IframesItem(v-for="item in events")
