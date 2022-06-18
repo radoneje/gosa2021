@@ -330,15 +330,15 @@ router.post('/recStarted', function (req, res, next) {
     res.json(1)
 });
 router.get('/records', basicAuth, async function (req, res, next) {
-    let items=await fs.promises.readdir("/var/video")
+    let items=await fs.promises.readdir("/var/spief2022video/video/")
     items=items.filter(f=>f.match(/\.mp4$/))
     let files=[]
     for(item of items){
-       let stat=await fs.promises.stat(path.join("/var/video", item));
+       let stat=await fs.promises.stat(path.join("/var/spief2022video/video/", item));
        files.push({name:item, size:numberWithSpaces(stat.size)});
     }
 
-    let diskSpace=await checkDiskSpace("/var/video")
+    let diskSpace=await checkDiskSpace("/var/spief2022video/video/")
     res.json({files, diskSpace})
 });
 function numberWithSpaces(x) {
