@@ -120,8 +120,8 @@ html
                             td Статус:
                             td.mobileHide Источник сигнала:
                             td IFrame:
-                            td.mobileHide(v-if="!readonly") запись рус:
-                            td.mobileHide(v-if="!readonly") запись англ:
+                            td.mobileHide() запись рус:
+                            td.mobileHide() запись англ:
 
 
                     tbody(v-for="item in events")
@@ -163,10 +163,10 @@ html
                                         .btn-clipboard(v-on:click="copyIFrameEn(item, $event)") iframe en
 
                                 td.mobileHide(v-if="!readonly")
-                                    input.mayReadonly(v-model="item.data.recRu" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+                                    input(v-model="item.data.recRu" style="border:none; padding:4px" readonly="readonly")
 
                                 td.mobileHide(v-if="!readonly")
-                                    input.mayReadonly(v-model="item.data.recEn" style="border:none; padding:4px" v-on:change="saveEvent(item)")
+                                    input(v-model="item.data.recEn" style="border:none; padding:4px"  readonly="readonly")
             .iFramesWr
                     .IframesItem(v-for="item in events")
                         .wrapper(v-html="getIframeRu(item)")
