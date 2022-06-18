@@ -192,8 +192,8 @@
             },
             saveEvent: async function (item) {
                 console.log("saveEvent",readonly);
-               // if(readonly)
-               //     return;
+                if(readonly)
+                   return;
                 const r = await axios.post("/event", item);
                 console.log(item)
             },
