@@ -42,7 +42,7 @@ router.get('/spief2022test', (req, res) => {
     res.render("spief2022test");
 })
 router.get('/admin', basicAuth, (req, res) => {
-    res.render("spief2022admin", {readonly: req.user.readonly});
+    res.render("spief2022admin", {readonly:true/* req.user.readonly*/});
 })
 router.get('/spief2022Iframe/:id/:lang', async (req, res) => {
 

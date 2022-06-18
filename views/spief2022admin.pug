@@ -36,9 +36,9 @@ html
                     a.nav-link(v-bind:class="{active:section==0}" style="cursor:pointer") Статистика
                 li.nav-item(v-on:click="section=1")
                     a.nav-link(v-bind:class="{active:section==1}" style="cursor:pointer") Управление
-                li.nav-item(v-on:click="section=2")
+                //li.nav-item(v-on:click="section=2")
                     a.nav-link(v-bind:class="{active:section==2}" style="cursor:pointer") Входящие rtmp
-                li.nav-item(v-on:click="section=3")
+                //li.nav-item(v-on:click="section=3")
                     a.nav-link(v-bind:class="{active:section==3}" style="cursor:pointer") Записи
             .statWr(v-if="section==3")
                 .div.mt3 Disk Space Free: {{numberWithSpaces(diskSpace.free)}} ({{diskSpaceFree()}})
