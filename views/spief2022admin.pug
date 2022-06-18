@@ -165,7 +165,7 @@ html
                                 td.mobileHide()
                                     input(v-model="item.data.recRu" style="border:none; padding:4px" v-on:change="saveEvent(item)" readonly="readonly")
 
-                                td.mobileHide(v-if="!readonly")
+                                td.mobileHide()
                                     input(v-model="item.data.recEn" style="border:none; padding:4px"  readonly="readonly")
             .iFramesWr
                     .IframesItem(v-for="item in events")
