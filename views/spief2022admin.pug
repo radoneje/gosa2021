@@ -163,7 +163,7 @@ html
                                         .btn-clipboard(v-on:click="copyIFrameEn(item, $event)") iframe en
 
                                 td.mobileHide()
-                                    input(v-model="item.data.recRu" style="border:none; padding:4px" v-on:change="saveEvent(item)" readonly="readonly")
+                                    input(v-model="item.data.recRu" style="border:none; padding:4px" v-on:change="saveEvent(item)" )
 
                                 td.mobileHide()
                                     input(v-model="item.data.recEn" style="border:none; padding:4px"  readonly="readonly")
