@@ -164,7 +164,7 @@ html
 
                                 td.mobileHide()
                                     ///*v-on:change="saveEvent(item)" */
-                                    input(v-model="item.data.recRu" style="border:none; padding:4px"  readonly="readonly")
+                                    input(v-model="item.data.recRu" style="border:none; padding:4px"  v-on:change="saveEvent(item)" )
 
                                 td.mobileHide()
                                     input(v-model="item.data.recEn" style="border:none; padding:4px"   readonly="readonly")
